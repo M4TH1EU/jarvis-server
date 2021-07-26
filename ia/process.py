@@ -2,10 +2,11 @@ import os
 
 import torch
 from unidecode import unidecode
-
 import get_path_file
 from ia.model import NeuralNet
 from ia.nltk_utils import bag_of_words, tokenize
+
+print("Loading, might take a few seconds...")
 
 path = os.path.dirname(get_path_file.__file__)
 
@@ -53,11 +54,6 @@ def get_tag_for_sentence(input_sentence):
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     if prob.item() > 0.75 and len(sentence) > 2:
-        return "MATCHING INTENT : " + tag + " (" + str(prob.item()) + ")"
-        # return intents.intents.get_matching_intent_for_tag(tag).get('tag')
+        return tag
     else:
         return 'dont_understand'
-
-
-if __name__ == '__main__':
-    print(get_tag_for_sentence("Hey, est il"))

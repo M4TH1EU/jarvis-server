@@ -1,6 +1,7 @@
 import flask
 from flask import Flask, request, jsonify, Response
 
+import ia.process
 from utils import config_utils, flask_utils
 
 app = Flask(__name__)
@@ -10,11 +11,15 @@ app = Flask(__name__)
 def process_request():
     data = flask_utils.get_data_in_request(request)
 
-    if 'sentence' not in data:
-        flask.abort(Response('You must provide a \'sentence\' parameter!'))
+    if 'sentence' not in data or not data['sentence']:
+        flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
-    print(data)
-    return jsonify(data)
+    sentence = data['sentence']
+    tag_for_request = ia.process.get_tag_for_sentence(sentence)
+
+    print("SENTENCE : " + sentence + " /// TAG : " + tag_for_request)
+
+    return jsonify(tag_for_request)
 
 
 if __name__ == '__main__':
