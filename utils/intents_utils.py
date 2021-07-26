@@ -4,6 +4,7 @@ import os
 import random
 
 import get_path_file
+from utils import config_utils
 
 all_intents = dict()
 path = os.path.dirname(get_path_file.__file__)
@@ -77,7 +78,7 @@ def get_responses(intent_tag):
 
 
 def get_lang_for_intent(intent_tag):
-    language = "fr-fr"  # TODO: use config value
+    language = config_utils.get_in_config('LANGUAGE')
 
     # first we check the intent
     if exists(intent_tag):
