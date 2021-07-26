@@ -1,0 +1,10 @@
+{
+  "name": "Jokes",
+  "languages": [
+    "FR-FR",
+    "EN-EN"
+  ],
+  "intents": [
+    "tell_me_a_joke"
+  ]
+}

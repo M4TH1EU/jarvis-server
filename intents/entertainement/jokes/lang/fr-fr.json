@@ -1,0 +1,14 @@
+{
+  "tell_me_a_joke": {
+    "patterns": [
+      "raconte moi-voir une blague",
+      "dis moi une blague",
+      "raconte une blague",
+      "fait moi rire",
+      "donne une bonne blague",
+      "raconte moi une blagounette"
+    ],
+    "responses": [
+    ]
+  }
+}
