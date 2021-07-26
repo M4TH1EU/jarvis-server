@@ -2,7 +2,7 @@ import flask
 from flask import Flask, request, jsonify, Response
 
 import ia.process
-from utils import config_utils, flask_utils
+from utils import config_utils, flask_utils, intents_utils, utils
 
 app = Flask(__name__)
 
@@ -19,7 +19,16 @@ def process_request():
 
     print("SENTENCE : " + sentence + " /// TAG : " + tag_for_request)
 
-    return jsonify(tag_for_request)
+    # stop here if the sentence isn't understood
+    if tag_for_request == 'dont_understand':
+        return jsonify("I didn't get that.")
+
+    path_of_intent = intents_utils.get_path(tag_for_request)
+    path_of_intent = path_of_intent.split('/intents/')[1].replace('/', '.')
+    path_of_intent = "intents." + path_of_intent + "intent"
+
+    method = utils.import_method_from_string(path_of_intent, tag_for_request)
+    return jsonify(method())
 
 
 if __name__ == '__main__':
