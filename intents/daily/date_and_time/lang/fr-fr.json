@@ -17,10 +17,22 @@
       "Quel jour est-on",
       "C'est quel jour aujourd'hui"
     ],
-    "response": [
-      "Nous somme le {day}",
+    "responses": [
+      "Nous somme {day}",
       "Aujourd'hui nous sommes {day}",
-      "On est {day}"
+      "On est {day}",
+      "{day}"
     ]
+  },
+  "others": {
+    "days_of_week": {
+      "0": "Lundi",
+      "1": "Mardi",
+      "2": "Mercredi",
+      "3": "Jeudi",
+      "4:": "Vendredi",
+      "5": "Samedi",
+      "6": "Dimanche"
+    }
   }
 }

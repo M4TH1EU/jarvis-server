@@ -2,6 +2,7 @@ import os
 
 import torch
 from unidecode import unidecode
+
 import get_path_file
 from ia.model import NeuralNet
 from ia.nltk_utils import bag_of_words, tokenize
