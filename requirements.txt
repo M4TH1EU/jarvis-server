@@ -1,1 +1,5 @@
-flask
+flask~=2.0.1
+Unidecode~=1.2.0
+nltk~=3.6.2
+torch~=1.9.0
+numpy~=1.21.1

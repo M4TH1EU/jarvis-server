@@ -22,10 +22,19 @@ The server can run on anything that runs Python 3+ *(linux recommended)*
 If not already installed, you will need Python 3.9, you can install it with these commands.
 
 ```shell
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt install python3.9 python3.9-dev python3.9-distutils
+$ sudo add-apt-repository ppa:deadsnakes/ppa
+$ sudo apt-get update
+$ sudo apt install python3.9 python3.9-dev python3.9-distutils
 ```
 
 After that, run the command `python -m pip3 install -r requirements.txt` to install the basic requirements for the
 project.
+
+Then we need to train our model, but before that we need to download "punkt" and "stopwords" from the NLTK downloader,
+go to the Python Console and enter the following commands :
+
+```shell
+> import nltk
+> nltk.download('punkt')
+> nltk.download('stopwords')
+```
