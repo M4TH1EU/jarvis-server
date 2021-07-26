@@ -57,6 +57,11 @@ def get_patterns(intent_tag):
         return {}
 
 
+def get_path(intent_tag):
+    if exists(intent_tag):
+        return get_all_intents().get(intent_tag)
+
+
 def get_response(intent_tag):
     if exists(intent_tag):
         responses = get_responses(intent_tag)
