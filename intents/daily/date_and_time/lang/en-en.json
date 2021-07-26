@@ -1,0 +1,27 @@
+{
+  "what_time_is_it": {
+    "patterns": [
+      "What time is it",
+      "Show me the time",
+      "Tell me the time",
+      "What's the time",
+      "What is the time"
+    ],
+    "responses": [
+      "It is {time}",
+      "It's {time} right now",
+      "The time is {time}"
+    ]
+  },
+  "what_day_is_it": {
+    "patterns": [
+      "What's the day",
+      "Tell me the day of the week. ",
+      "What day are we"
+    ],
+    "response": [
+      "{day}",
+      "Today is {day}"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+# THIS FILE DOESN'T DO ANYTHING EXCEPT GIVE THE PROJECT MAIN PATH (i'm listening for better ideas)

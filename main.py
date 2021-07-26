@@ -1,0 +1,23 @@
+import flask
+from flask import Flask, request, jsonify, Response
+
+from utils import config_utils, flask_utils
+
+app = Flask(__name__)
+
+
+@app.route("/process", methods=['POST'])
+def process_request():
+    data = flask_utils.get_data_in_request(request)
+
+    if 'sentence' not in data:
+        flask.abort(Response('You must provide a \'sentence\' parameter!'))
+
+    print(data)
+    return jsonify(data)
+
+
+if __name__ == '__main__':
+    # start the flask server
+    app.config['JSON_AS_ASCII'] = False
+    app.run(port=config_utils.get_in_config("PORT"), debug=False, host='0.0.0.0', threaded=True)

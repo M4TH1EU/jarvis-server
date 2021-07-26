@@ -1,0 +1,26 @@
+{
+  "what_time_is_it": {
+    "patterns": [
+      "Il est quelle heure",
+      "C'est quelle heure",
+      "On vit quelle heure",
+      "Quelle heure est-il"
+    ],
+    "responses": [
+      "Il est {time}",
+      "Il est actuellement {time}"
+    ]
+  },
+  "what_day_is_it": {
+    "patterns": [
+      "On est quel jour",
+      "Quel jour est-on",
+      "C'est quel jour aujourd'hui"
+    ],
+    "response": [
+      "Nous somme le {day}",
+      "Aujourd'hui nous sommes {day}",
+      "On est {day}"
+    ]
+  }
+}
