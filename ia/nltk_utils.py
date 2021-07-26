@@ -2,16 +2,24 @@ import nltk
 import numpy as np
 from nltk.stem.porter import PorterStemmer
 
+from utils import config_utils, languages_utils
+
 stemmer = PorterStemmer()
 
+
+# TODO : have a look to replace nltk by spacy or the other way (use only one of them)
 
 def tokenize(sentence):
     """
     split sentence into array of words/tokens
     a token can be a word or punctuation character, or number
     """
-    # TODO: implement english and others languages
-    return nltk.word_tokenize(sentence, language="french")
+    # English, Danish, Estonian, French, Greek, Norwegian, Portuguese, Spanish, Turkish,
+    # Czech, Dutch, Finnish, German, Italian, Polish, Slovene, and Swedish
+
+    print(languages_utils.get_language_name(config_utils.get_in_config("LANGUAGE")))
+    return nltk.word_tokenize(sentence,
+                              language=languages_utils.get_language_name(config_utils.get_in_config("LANGUAGE")))
 
 
 def stem(word):
