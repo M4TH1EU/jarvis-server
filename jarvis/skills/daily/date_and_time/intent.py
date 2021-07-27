@@ -1,7 +1,7 @@
 import time
 from datetime import datetime
 
-from utils import config_utils, intents_utils
+from jarvis.utils import intents_utils, config_utils
 
 
 def what_time_is_it():

@@ -1,7 +1,7 @@
 import json
 import os
 
-import get_path_file
+from jarvis import get_path_file
 
 path = os.path.dirname(get_path_file.__file__)
 

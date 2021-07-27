@@ -5,10 +5,10 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
-import get_path_file
-from ia.model import NeuralNet
-from ia.nltk_utils import bag_of_words, tokenize, stem
-from utils import intents_utils
+from jarvis import get_path_file
+from jarvis.ia.model import NeuralNet
+from jarvis.ia.nltk_utils import bag_of_words, tokenize, stem
+from jarvis.utils import intents_utils
 
 path = os.path.dirname(get_path_file.__file__)
 

@@ -135,4 +135,4 @@ dmypy.json
 
 
 /ffmpeg/
-/config/secrets.json
+/jarvis/config/secrets.json

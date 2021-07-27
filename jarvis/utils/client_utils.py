@@ -3,7 +3,7 @@ import json
 import requests
 from requests.structures import CaseInsensitiveDict
 
-from utils import config_utils
+from jarvis.utils import config_utils
 
 client_url = config_utils.get_in_config("CLIENT_URL")
 

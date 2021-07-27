@@ -2,7 +2,7 @@ import nltk
 import numpy as np
 from nltk.stem.porter import PorterStemmer
 
-from utils import languages_utils
+from jarvis.utils import languages_utils
 
 stemmer = PorterStemmer()
 

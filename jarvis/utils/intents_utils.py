@@ -3,8 +3,8 @@ import json
 import os
 import random
 
-import get_path_file
-from utils import languages_utils
+from jarvis import get_path_file
+from jarvis.utils import languages_utils
 
 all_intents = dict()
 path = os.path.dirname(get_path_file.__file__)

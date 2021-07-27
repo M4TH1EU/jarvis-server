@@ -1,6 +1,6 @@
 import requests as requests
 
-from utils import languages_utils, config_utils
+from jarvis.utils import languages_utils, config_utils
 
 
 def tell_me_a_joke():
