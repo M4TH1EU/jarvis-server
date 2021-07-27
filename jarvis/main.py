@@ -1,7 +1,9 @@
 import flask
 from flask import Flask, request, jsonify, Response
 
-import jarvis.ia.process
+from jarvis.ia import process
+from jarvis.skills import intent_manager
+from jarvis.skills.research.wikipedia import WikipediaSkill
 from utils import config_utils, flask_utils, intents_utils, utils
 
 app = Flask(__name__)
@@ -15,7 +17,7 @@ def process_request():
         flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
     sentence = data['sentence']
-    tag_for_request = jarvis.ia.process.get_tag_for_sentence(sentence)
+    tag_for_request = process.get_tag_for_sentence(sentence)
 
     print("SENTENCE : " + sentence + " /// TAG : " + tag_for_request)
 
@@ -32,6 +34,10 @@ def process_request():
 
 
 if __name__ == '__main__':
+    # Tests
+    WikipediaSkill().register()
+    intent_manager.recognise("cherche sur wikipedia Elon Musk")
+
     # start the flask server
     app.config['JSON_AS_ASCII'] = False
     app.run(port=config_utils.get_in_config("PORT"), debug=False, host='0.0.0.0', threaded=True)
