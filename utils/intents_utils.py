@@ -19,7 +19,7 @@ def register_all_intents():
     for f in files:
         with open(f, "rb") as infile:
             intent_info_json = json.load(infile)
-            intents_in_info = intent_info_json['skills']
+            intents_in_info = intent_info_json['intents']
             intent_path = str(f).replace('info.json', '')
 
             for intent in intents_in_info:
