@@ -1,6 +1,7 @@
 import flask
 from flask import Flask, request, jsonify, Response
 
+import jarvis.ia.process
 from utils import config_utils, flask_utils, intents_utils, utils
 
 app = Flask(__name__)
@@ -14,7 +15,7 @@ def process_request():
         flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
     sentence = data['sentence']
-    tag_for_request = src.ia.process.get_tag_for_sentence(sentence)
+    tag_for_request = jarvis.ia.process.get_tag_for_sentence(sentence)
 
     print("SENTENCE : " + sentence + " /// TAG : " + tag_for_request)
 

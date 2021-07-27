@@ -2,9 +2,14 @@ import spacy
 
 from jarvis.utils import languages_utils
 
+nlp = None
+
 
 def get_spacy_nlp():
-    nlp = spacy.load(languages_utils.get_spacy_model())
+    global nlp
+
+    if nlp is None:
+        nlp = spacy.load(languages_utils.get_spacy_model())
     return nlp
 
 
