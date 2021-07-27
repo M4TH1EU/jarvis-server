@@ -24,8 +24,8 @@ def process_request():
         return jsonify("I didn't get that.")
 
     path_of_intent = intents_utils.get_path(tag_for_request)
-    path_of_intent = path_of_intent.split('/intents/')[1].replace('/', '.')
-    path_of_intent = "intents." + path_of_intent + "intent"
+    path_of_intent = path_of_intent.split('/skills/')[1].replace('/', '.')
+    path_of_intent = "skills." + path_of_intent + "intent"
 
     method = utils.import_method_from_string(path_of_intent, tag_for_request)
     return jsonify(method())

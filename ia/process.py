@@ -37,7 +37,7 @@ def get_tag_for_sentence(input_sentence):
     ----------
     input_sentence is your sentence
 
-    Returns tag from the intents.json file
+    Returns tag from the skills.json file
     -------
 
     """

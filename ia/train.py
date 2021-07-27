@@ -20,7 +20,7 @@ def train():
     all_words = []
     tags = []
     xy = []
-    # loop through each sentence in our intents patterns
+    # loop through each sentence in our skills patterns
     for intent in all_intents_patterns:
         tag = intent
         # add to tag list
