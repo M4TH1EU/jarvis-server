@@ -9,6 +9,7 @@ def get_spacy_nlp():
     global nlp
 
     if nlp is None:
+        print("A Spacy model is starting, it might take a few seconds (starts only once)")
         nlp = spacy.load(languages_utils.get_spacy_model())
     return nlp
 
