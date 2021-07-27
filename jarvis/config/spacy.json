@@ -1,0 +1,19 @@
+{
+  "fr-fr": "fr_core_news_sm",
+  "en-en": "en_core_web_sm",
+  "en-us": "en_core_web_sm",
+  "de-de": "de_core_news_sm",
+  "tr-tr": "xx_ent_wiki_sm",
+  "cs-cz": "xx_ent_wiki_sm",
+  "el-gr": "xx_ent_wiki_sm",
+  "da-dk": "da_core_news_sm",
+  "et-ee": "xx_ent_wiki_sm",
+  "pt-pt": "pt_core_news_sm",
+  "es-es": "es_core_news_sm",
+  "nl-nl": "nb_core_news_sm",
+  "fi-fi": "xx_ent_wiki_sm",
+  "it-it": "it_core_news_sm",
+  "pl-pl": "pl_core_news_sm",
+  "sl-si": "xx_ent_wiki_sm",
+  "sv-se": "xx_ent_wiki_sm"
+}

@@ -26,3 +26,15 @@ def get_language_full_name(name=None):
         return config_json.get(name)
 
     return 'english'
+
+
+def get_spacy_model(language=None):
+    spacy_model = json.load(open(path + "/config/spacy.json", encoding='utf-8', mode='r'))
+
+    if language is None:
+        language = get_language()
+
+    if language in spacy_model:
+        return spacy_model.get(language)
+
+    return 'xx_ent_wiki_sm'  # multi-language model (for unsupported languages)

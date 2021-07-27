@@ -5,3 +5,4 @@ torch~=1.9.0
 numpy~=1.21.1
 requests~=2.26.0
 adapt-parser
+spacy~=3.1.1
