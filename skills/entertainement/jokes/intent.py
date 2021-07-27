@@ -1,6 +1,6 @@
 import requests as requests
 
-from utils import languages_utils
+from utils import languages_utils, config_utils
 
 
 def tell_me_a_joke():
@@ -9,11 +9,12 @@ def tell_me_a_joke():
 
     # french jokes
     if languages_utils.get_language().startswith("fr-"):
-        # the token used might be revoked at any time, please register on www.blagues-api.fr and replace it
+
+        # please register on www.blagues-api.fr and set a token in your secret
         response = requests.get(
             'https://www.blagues-api.fr/api/random',
             headers={
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzA4OTcyNzQwOTQ5ODM1ODI2IiwibGltaXQiOjEwMCwia2V5IjoiYmZlUVBSb2xuY2FleHBHc2taRU90VkdKOGxhdWZsZVRSMFJadnR3QXV3c056djdpYlkiLCJjcmVhdGVkX2F0IjoiMjAyMS0wNS0yOVQxNDoyMjo0MCswMDowMCIsImlhdCI6MTYyMjI5ODE2MH0.6VxH_dTdJSddhHoYOtdQl0j9WC3lzXjUujUio5U09Jg'
+                'Authorization': 'Bearer ' + config_utils.get_in_secret('JOKES_FRENCH_API_TOKEN')
             }
         )
 
