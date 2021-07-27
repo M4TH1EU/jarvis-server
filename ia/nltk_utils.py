@@ -2,7 +2,7 @@ import nltk
 import numpy as np
 from nltk.stem.porter import PorterStemmer
 
-from utils import config_utils, languages_utils
+from utils import languages_utils
 
 stemmer = PorterStemmer()
 
@@ -17,7 +17,6 @@ def tokenize(sentence):
     # English, Danish, Estonian, French, Greek, Norwegian, Portuguese, Spanish, Turkish,
     # Czech, Dutch, Finnish, German, Italian, Polish, Slovene, and Swedish
 
-    print(languages_utils.get_language_full_name())
     return nltk.word_tokenize(sentence,
                               language=languages_utils.get_language_full_name())
 
