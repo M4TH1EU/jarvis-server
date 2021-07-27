@@ -1,6 +1,6 @@
 import requests as requests
 
-from utils import config_utils
+from utils import languages_utils
 
 
 def tell_me_a_joke():
@@ -8,7 +8,7 @@ def tell_me_a_joke():
     # response = intents_utils.get_response(tag)
 
     # french jokes
-    if config_utils.get_in_config("LANGUAGE").startswith("fr-"):
+    if languages_utils.get_language().startswith("fr-"):
         # the token used might be revoked at any time, please register on www.blagues-api.fr and replace it
         response = requests.get(
             'https://www.blagues-api.fr/api/random',
@@ -24,7 +24,7 @@ def tell_me_a_joke():
         return joke + " /pause:2s/ " + answer
 
     # english jokes
-    elif config_utils.get_in_config("LANGUAGE").startswith("en-"):
+    elif languages_utils.get_language().startswith("en-"):
         response = requests.get('https://v2.jokeapi.dev/joke/Any?type=twopart')
         data = response.json()
 

@@ -4,7 +4,7 @@ import os
 import random
 
 import get_path_file
-from utils import config_utils
+from utils import languages_utils
 
 all_intents = dict()
 path = os.path.dirname(get_path_file.__file__)
@@ -78,12 +78,10 @@ def get_responses(intent_tag):
 
 
 def get_lang_for_intent(intent_tag):
-    language = config_utils.get_in_config('LANGUAGE')
-
     # first we check the intent
     if exists(intent_tag):
         lang_path = str(get_all_intents().get(intent_tag))
-        lang_path = lang_path + 'lang/' + language + '.json'
+        lang_path = lang_path + 'lang/' + languages_utils.get_language() + '.json'
 
         if os.path.exists(lang_path):
             lang_file = open(lang_path)

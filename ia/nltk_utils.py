@@ -17,9 +17,9 @@ def tokenize(sentence):
     # English, Danish, Estonian, French, Greek, Norwegian, Portuguese, Spanish, Turkish,
     # Czech, Dutch, Finnish, German, Italian, Polish, Slovene, and Swedish
 
-    print(languages_utils.get_language_name(config_utils.get_in_config("LANGUAGE")))
+    print(languages_utils.get_language_full_name())
     return nltk.word_tokenize(sentence,
-                              language=languages_utils.get_language_name(config_utils.get_in_config("LANGUAGE")))
+                              language=languages_utils.get_language_full_name())
 
 
 def stem(word):
