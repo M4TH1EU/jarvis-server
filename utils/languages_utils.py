@@ -14,6 +14,8 @@ def get_language():
 def get_language_full_name(name=None):
     """
     Return for exemple french for fr-fr, english for en-en, etc (savec in languages.json in the config folder)
+
+    Return english if the language isn't found in the languages.json file
     """
     config_json = json.load(open(path + "/config/languages.json", encoding='utf-8', mode='r'))
 
@@ -22,3 +24,5 @@ def get_language_full_name(name=None):
 
     if name in config_json:
         return config_json.get(name)
+
+    return 'english'
