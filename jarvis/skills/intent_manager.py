@@ -19,7 +19,7 @@ def register_regex(regex, domain):
 
 def register_intent(intent, domain):
     engine.register_intent_parser(intent, domain='WikipediaSkill')
-    print("[Adapt]: Registered new intent for skill " + domain)
+    print("[Adapt]: Registered new intent " + intent.name + " for skill " + domain)
 
 
 def process_handlers():
