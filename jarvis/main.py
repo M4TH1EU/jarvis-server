@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, Response
 
 from jarvis.ia import process
 from jarvis.skills import intent_manager
+from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from utils import config_utils, flask_utils, intents_utils, utils
 
@@ -36,10 +37,12 @@ def process_request():
 if __name__ == '__main__':
     # Tests
     WikipediaSkill().register()
+    JokesSkill().register()
 
     intent_manager.process_handlers()
 
     intent_manager.recognise("cherche sur wikipedia Elon Musk")
+    intent_manager.recognise("raconte moi une blague")
 
     # start the flask server
     app.config['JSON_AS_ASCII'] = False
