@@ -15,7 +15,7 @@ class Skill:
     def register(self):
         self.register_entities()
         self.register_regex()
-        print("Registred entitie(s) and regex(s) for " + self.name)
+        print("[" + self.name + "] Registred entitie(s) and regex(s)")
 
     def register_entities(self):
         path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
@@ -27,8 +27,7 @@ class Skill:
                 for line in infile.readlines():
                     filename = file.split("/")[-1].split(".voc")[0]
 
-                    intent_manager.engine.register_entity(line.replace('\n', ''), filename, self.name)
-                    # intent_manager.register_entity(line.replace('\n', ''), filename, self.name)
+                    intent_manager.register_entity(line.replace('\n', ''), filename, self.name)
 
     def register_regex(self):
         path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
@@ -38,5 +37,4 @@ class Skill:
         for file in files:
             with open(file, "r") as infile:
                 for line in infile.readlines():
-                    intent_manager.engine.register_regex_entity(line.replace('\n', ''), self.name)
-                    # intent_manager.register_regex(line.replace('\n', ''), self.name)
+                    intent_manager.register_regex(line.replace('\n', ''), self.name)
