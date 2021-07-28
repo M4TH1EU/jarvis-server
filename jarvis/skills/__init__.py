@@ -42,6 +42,9 @@ class Skill:
                 for line in infile.readlines():
                     intent_manager.register_regex(line.replace('\n', ''), self.name)
 
+    def speak(self, message):
+        print(message)
+
 
 class SkillRegistering(type):
     def __init__(cls, name, bases, attrs):
@@ -49,7 +52,7 @@ class SkillRegistering(type):
             if type(val) is types.FunctionType and not str(val).__contains__("__"):
                 properties = getattr(val, "_register", None)
 
-                intent = properties[0]
-                intent_name = intent.name
                 if properties is not None:
+                    intent = properties[0]
+                    intent_name = intent.name
                     intent_manager.intents_handlers[f"{intent_name}"] = [getattr(cls, key), name]
