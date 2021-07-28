@@ -36,6 +36,9 @@ def process_request():
 if __name__ == '__main__':
     # Tests
     WikipediaSkill().register()
+
+    intent_manager.process_handlers()
+
     intent_manager.recognise("cherche sur wikipedia Elon Musk")
 
     # start the flask server
