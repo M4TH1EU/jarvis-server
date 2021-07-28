@@ -6,8 +6,7 @@ from jarvis.skills.decorators import intent_handler
 
 class WikipediaSkill(Skill, metaclass=SkillRegistering):
     def __init__(self):
-        # TODO: shorten that
-        super().__init__("WikipediaSkill", "research", "wikipedia")
+        super().__init__("WikipediaSkill")
 
     @intent_handler(IntentBuilder("WikipediaQueryIntent").require("Wikipedia").require("ArticleTitle"))
     def handle_wikipedia_query_intent(self, data):

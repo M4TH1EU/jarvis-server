@@ -8,10 +8,12 @@ from jarvis.utils import languages_utils
 
 
 class Skill:
-    def __init__(self, name, category, skill_folder):
+    def __init__(self, name):
         self.name = name
-        self.category = category
-        self.skill_folder = skill_folder
+
+        path = self.__module__.split(".")
+        self.category = path[2]
+        self.skill_folder = path[3]
 
     def register(self):
         self.register_entities()
