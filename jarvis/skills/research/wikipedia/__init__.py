@@ -1,6 +1,6 @@
 from adapt.intent import IntentBuilder
 
-from jarvis.skills import Skill, intent_manager
+from jarvis.skills import Skill
 
 
 class WikipediaSkill(Skill):
@@ -10,5 +10,7 @@ class WikipediaSkill(Skill):
     def register(self):
         super().register()
 
-        intent_manager.register_intent(IntentBuilder("WikipediaQueryIntent").require("Wikipedia").require("ArticleTitle").build(),
-                                       domain=self.name)
+        wikipedia_query_intent = IntentBuilder("WikipediaQueryIntent")\
+            .require("Wikipedia")\
+            .require("ArticleTitle")
+        super().register_intent(wikipedia_query_intent)

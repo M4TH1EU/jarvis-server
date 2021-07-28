@@ -15,7 +15,7 @@ class Skill:
     def register(self):
         self.register_entities()
         self.register_regex()
-        print("[" + self.name + "] Registred entitie(s) and regex(s)")
+        print("[" + self.name + "] Registered entity/entities and regex(s)")
 
     def register_entities(self):
         path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
@@ -38,3 +38,6 @@ class Skill:
             with open(file, "r") as infile:
                 for line in infile.readlines():
                     intent_manager.register_regex(line.replace('\n', ''), self.name)
+
+    def register_intent(self, intent):
+        intent_manager.register_intent(intent.build(), domain=self.name)
