@@ -75,6 +75,7 @@ def recognise(sentence):
     if len(intents_handlers_padatious) > 0:
         result = padatious_intents_container.calc_intent(sentence)
         # print(result)  # DEBUG
+        # print(padatious_intents_container.calc_intents(sentence))  # DEBUG
 
         if result.conf >= 0.2:
             data = dict()
@@ -86,4 +87,4 @@ def recognise(sentence):
             data.update(result.matches)  # adding the matches from padatious to the data
             handle(result.name, data)
         else:
-            print("No match... (Padatious")
+            print("No match... (Padatious)")
