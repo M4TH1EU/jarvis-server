@@ -77,6 +77,13 @@ def recognise(sentence):
         # print(result)  # DEBUG
 
         if result.conf >= 0.2:
-            handle(result.name, [result.matches, result.sent])
+            data = dict()
+            if isinstance(result.sent, list):
+                data['utterance'] = " ".join(
+                    result.sent)  # add the sentence (utterance) to the data given to the intent handler
+            else:
+                data['utterance'] = result.sent
+            data.update(result.matches)  # adding the matches from padatious to the data
+            handle(result.name, data)
         else:
             print("No match... (Padatious")
