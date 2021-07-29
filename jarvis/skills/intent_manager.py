@@ -1,10 +1,9 @@
-import json
-
 from adapt.engine import DomainIntentDeterminationEngine
 
 engine = DomainIntentDeterminationEngine()
 
-intents_handlers = dict()
+intents_handlers_adapt = dict()
+intents_handlers_padatious = dict()
 
 
 def register_entity(entity_value, entity_type, domain):
@@ -23,17 +22,20 @@ def register_intent(intent, domain):
 
 
 def process_handlers():
-    for handler in intents_handlers:
-        function_handler = intents_handlers.get(handler)
+    for handler in intents_handlers_adapt:
+        function_handler = intents_handlers_adapt.get(handler)
         intent_builder = getattr(function_handler[0], "_register", [])[0]
         skill_name = function_handler[1]
-
         register_intent(intent_builder.build(), domain=skill_name)
+
+    for handler in intents_handlers_padatious:
+        # TODO : register file intents
+        print("")
 
 
 def handle(intent_name):
-    if intent_name in intents_handlers:
-        method = intents_handlers.get(intent_name)[0]
+    if intent_name in intents_handlers_adapt:
+        method = intents_handlers_adapt.get(intent_name)[0]
         method(None, [])
 
 

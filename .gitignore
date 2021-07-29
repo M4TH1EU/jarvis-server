@@ -10,6 +10,9 @@ __pycache__/
 # C extensions
 *.so
 
+intent_cache/*
+**/intent_cache/**
+
 
 # Distribution / packaging
 .Python

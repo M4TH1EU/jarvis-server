@@ -44,7 +44,6 @@ if __name__ == '__main__':
     # intent_manager.recognise("cherche sur wikipedia Elon Musk")
     # intent_manager.recognise("raconte moi une blague")
     intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
-    intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
     intent_manager.recognise("joue crazy crazy nights")
 
     # start the flask server

@@ -42,17 +42,20 @@ class Skill:
                 for line in infile.readlines():
                     intent_manager.register_regex(line.replace('\n', ''), self.name)
 
-    def speak(self, message):
-        print(message)
-
 
 class SkillRegistering(type):
     def __init__(cls, name, bases, attrs):
         for key, val in attrs.items():
             if type(val) is types.FunctionType and not str(val).__contains__("__"):
-                properties = getattr(val, "_register", None)
+                type = getattr(val, "_type", None)
 
-                if properties is not None:
-                    intent = properties[0]
-                    intent_name = intent.name
-                    intent_manager.intents_handlers[f"{intent_name}"] = [getattr(cls, key), name]
+                if type is not None:
+                    properties = getattr(val, "_data", None)
+
+                    if properties is not None:
+                        if type is 'adapt':
+                            intent = properties[0]
+                            intent_name = intent.name
+                            intent_manager.intents_handlers_adapt[f"{intent_name}"] = [getattr(cls, key), name]
+                        elif type is 'padatious':
+                            intent_file = properties[0]
