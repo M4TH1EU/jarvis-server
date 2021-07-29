@@ -19,12 +19,12 @@ The server can run on anything that runs Python 3+ *(linux recommended)*
 
 ## Installation
 
-If not already installed, you will need Python 3.9, you can install it with these commands.
+If not already installed, you will need Python 3.9 and few other parckage for jarvis to work, you can install them with these commands.
 
 ```shell
 $ sudo add-apt-repository ppa:deadsnakes/ppa
 $ sudo apt-get update
-$ sudo apt install python3.9 python3.9-dev python3.9-distutils
+$ sudo apt install python3.9 python3.9-dev python3.9-distutils python3-fann2 libfann-dev swig
 ```
 
 After that, run the command `python -m pip3 install -r requirements.txt` to install the basic requirements for the

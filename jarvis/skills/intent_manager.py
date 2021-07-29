@@ -45,3 +45,5 @@ def recognise(sentence):
     best_intent = next(best_intents)
 
     print(best_intent)
+
+    handle(best_intent['intent_type'])
