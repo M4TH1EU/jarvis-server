@@ -30,7 +30,7 @@ class Skill:
                 for line in infile.readlines():
                     filename = file.split("/")[-1].split(".voc")[0]
 
-                    intent_manager.register_entity(line.replace('\n', ''), filename, self.name)
+                    intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
 
     def register_regex(self):
         path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
@@ -40,22 +40,45 @@ class Skill:
         for file in files:
             with open(file, "r") as infile:
                 for line in infile.readlines():
-                    intent_manager.register_regex(line.replace('\n', ''), self.name)
+                    intent_manager.register_regex_adapt(line.replace('\n', ''), self.name)
+
+
+def get_array_for_intent_file(filename, category, skill_folder):
+    path = os.path.dirname(get_path_file.__file__) + "/skills/" + category + "/" + skill_folder
+    path = path + "/vocab/" + languages_utils.get_language() + "/" + filename
+
+    with open(file=path, mode="r") as infile:
+        lines = []
+
+        for line in infile.readlines():
+            lines.append(line.replace('\n', ''))
+
+        return lines
 
 
 class SkillRegistering(type):
     def __init__(cls, name, bases, attrs):
         for key, val in attrs.items():
             if type(val) is types.FunctionType and not str(val).__contains__("__"):
-                type = getattr(val, "_type", None)
+                intent_type = getattr(val, "_type", None)
 
-                if type is not None:
+                if intent_type is not None:
                     properties = getattr(val, "_data", None)
 
                     if properties is not None:
-                        if type is 'adapt':
+                        if intent_type == 'adapt':
                             intent = properties[0]
                             intent_name = intent.name
                             intent_manager.intents_handlers_adapt[f"{intent_name}"] = [getattr(cls, key), name]
-                        elif type is 'padatious':
+                        elif intent_type == 'padatious':
                             intent_file = properties[0]
+                            intent_name = properties[1]
+
+                            intent_category = str(attrs['__module__']).split('.')[2]
+                            skill_folder = str(attrs['__module__']).split('.')[3]
+
+                            intent_manager.intents_handlers_padatious[f"{intent_name}"] = [getattr(cls, key),
+                                                                                           get_array_for_intent_file(
+                                                                                               intent_file,
+                                                                                               intent_category,
+                                                                                               skill_folder)]

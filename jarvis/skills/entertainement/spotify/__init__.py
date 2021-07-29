@@ -6,6 +6,6 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
     def __init__(self):
         super().__init__("SpotifySkill")
 
-    @intent_file_handler("play_a_song.intent")
+    @intent_file_handler("play_a_song.intent", "PlaySongWithSpotifyIntent")
     def handle_play_a_song(self, data):
         print("Play song")
