@@ -1,0 +1,1 @@
+(?:joue|mets|mets|fait moi écouter|moi|écouter) (?:le morceau|la chanson|voir|) ?(?P<SongName>.+) (?:de) (?P<Singer>.+?(?= sur|$))

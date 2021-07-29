@@ -3,8 +3,7 @@ from flask import Flask, request, jsonify, Response
 
 from jarvis.ia import process
 from jarvis.skills import intent_manager
-from jarvis.skills.entertainement.jokes import JokesSkill
-from jarvis.skills.research.wikipedia import WikipediaSkill
+from jarvis.skills.entertainement.spotify import SpotifySkill
 from utils import config_utils, flask_utils, intents_utils, utils
 
 app = Flask(__name__)
@@ -36,13 +35,17 @@ def process_request():
 
 if __name__ == '__main__':
     # Tests
-    WikipediaSkill().register()
-    JokesSkill().register()
+    # WikipediaSkill().register()
+    # JokesSkill().register()
+    SpotifySkill().register()
 
     intent_manager.process_handlers()
 
-    intent_manager.recognise("cherche sur wikipedia Elon Musk")
-    intent_manager.recognise("raconte moi une blague")
+    # intent_manager.recognise("cherche sur wikipedia Elon Musk")
+    # intent_manager.recognise("raconte moi une blague")
+    intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
+    intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
+    intent_manager.recognise("joue crazy crazy nights")
 
     # start the flask server
     app.config['JSON_AS_ASCII'] = False

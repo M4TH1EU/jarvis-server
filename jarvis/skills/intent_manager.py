@@ -38,7 +38,10 @@ def handle(intent_name):
 
 
 def recognise(sentence):
-    for intents in engine.determine_intent(sentence):
-        json_response = json.loads(json.dumps(intents))
+    sentence = sentence.lower()
+    print(sentence)
 
-        handle(json_response['intent_type'])
+    best_intents = engine.determine_intent(sentence, 100)
+    best_intent = next(best_intents)
+
+    print(best_intent)
