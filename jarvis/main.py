@@ -1,9 +1,11 @@
 import flask
+import lingua_franca
 from flask import Flask, request, jsonify, Response
 
 from jarvis.ia import process
 from jarvis.skills import intent_manager
 from jarvis.skills.entertainement.spotify import SpotifySkill
+from jarvis.utils import languages_utils
 from utils import config_utils, flask_utils, intents_utils, utils
 
 app = Flask(__name__)
@@ -34,6 +36,10 @@ def process_request():
 
 
 if __name__ == '__main__':
+    # Load lingua franca in the memory
+    # Supported : English French German Hungarian Italian Portuguese Swedish
+    lingua_franca.load_language(lang=languages_utils.get_language().split("-")[0])
+
     # Tests
     # WikipediaSkill().register()
     # JokesSkill().register()
@@ -43,7 +49,7 @@ if __name__ == '__main__':
 
     # intent_manager.recognise("cherche sur wikipedia Elon Musk")
     # intent_manager.recognise("raconte moi une blague")
-    intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
+    # intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")
 
     # start the flask server
     app.config['JSON_AS_ASCII'] = False
