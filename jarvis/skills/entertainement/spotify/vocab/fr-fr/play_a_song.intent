@@ -7,6 +7,10 @@ Mets le titre {song}
 Mets le titre {song} sur spotify
 Mets le morceau {song}
 Mets le morceau {song} sur spotify
+Mets {song}
+Mets {song} sur spotify
+Mets {song} de {singer}
+Mets {song} de {singer} sur spotify
 Joue le morceau {song}
 Joue le morceau {song} sur spotify
 Mets le titre {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
