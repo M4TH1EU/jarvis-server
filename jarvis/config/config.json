@@ -4,5 +4,7 @@
   "12HOURS-FORMAT": false,
   "LANGUAGE": "fr-fr",
   "CLIENT_URL": "http://127.0.0.1:5001",
-  "TRAIN_ON_START": false
+  "TRAIN_ON_START": false,
+  "SPOTIFY_CLIENT_ID": "!secret SPOTIFY_CLIENT_ID",
+  "SPOTIFY_CLIENT_SECRET": "!secret SPOTIFY_CLIENT_SECRET"
 }
