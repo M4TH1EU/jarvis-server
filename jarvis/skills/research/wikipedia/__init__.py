@@ -1,5 +1,6 @@
 from jarvis.skills import Skill, SkillRegistering
 from jarvis.skills.decorators import intent_file_handler
+from jarvis.skills.research.wikipedia import wikipedia
 
 
 class WikipediaSkill(Skill, metaclass=SkillRegistering):
@@ -8,8 +9,12 @@ class WikipediaSkill(Skill, metaclass=SkillRegistering):
 
     @intent_file_handler("search.wikipedia.intent", "WikipediaQueryIntent")
     def handle_wikipedia_query_intent(self, data):
-        print(data)
-        print("Handle Wikipedia Query Intent Method")
+        if 'query' in data:
+            # TODO : say somethink like "i'm searching..."
+            print("[INTENT RESULT] : " + wikipedia.page_summary(query=data['query']))
+        else:
+            # TODO: fallback to duckduckgo or wolfram alpha
+            pass
 
 
 def create_skill():
