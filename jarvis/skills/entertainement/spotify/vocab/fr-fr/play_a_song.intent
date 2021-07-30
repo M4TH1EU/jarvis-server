@@ -1,33 +1,25 @@
-Joue {song} sur spotify
-Joue {song}
-Joue la chanson {song}
-Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Mets la chanson {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Mets la chanson {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Mets le titre {song}
-Mets le titre {song} sur spotify
-Mets le morceau {song}
-Mets le morceau {song} sur spotify
-Joue le morceau {song}
-Joue le morceau {song} sur spotify
-Mets le titre {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Mets le titre {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Joue le morceau {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Joue le morceau {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Mets voir {song}
-Mets voir {song} sur spotify
-Mets voir {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Mets voir {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Fait moi écouter {song}
-Fait moi écouter {song} sur spotify
-Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
-Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
-Joue quelque chose de {singer}
-Mets de la musique du chanteur {singer}
-Joue quelque chose du chanteur {singer}
-Joue quelque chose de la chanteuse {singer}
-Mets quelque chose de {singer}
-Mets quelque chose de la chanteuse {singer}
-Mets quelque chose du chanteur {singer}
+Joue {song} (sur spotify|)
+Joue (le|la|) chanson {song}
+Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist}
+Mets (le|la|) chanson {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+(Mets|Joue) (le|la|) (chanson|morceau|titre|) {song} (sur spotify|)
+Mets (le|la|) titre {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Joue (le|la|) (chanson|morceau|titre|) {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Mets (moi|) voir {song} (sur spotify|)
+Mets (moi|) voir un peu de  {artist} (sur spotify|)
+Mets voir {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Fait moi écouter {song} (sur spotify|)
+Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Mets de la musique (de la chanteuse|du chanteur|de) {artist}
+(Joue|Mets) quelque chose (de la chanteuse|du chanteur|de) {artist}
+Joue (un|une) (chanson|morceau|titre|) (de la chanteuse|du chanteur|de) {artist}
+Joue du {artist} (sur spotify|)
+Joue voir (la chanson|le morceau|le titre|) {song}
+Joue voir (la chanson|le morceau|le titre|) {song} (de la chanteuse|du chanteur|de) {artist}
+Joue voir {song} de {artist}
+Tu peux jouer le morceau {song}
+Tu peux jouer le morceau {song} (de la chanteuse|du chanteur|de) {artist}
+Joue moi voir {song} (sur spotify|)
+Joue moi voir {song} de {artist} (sur spotify|)
+(Joue|Mets) moi un peu de {artist} (sur spotify|)

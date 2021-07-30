@@ -1,4 +1,7 @@
+import random
 import re
+import string
+from difflib import SequenceMatcher
 
 import spotipy
 from lingua_franca.parse import fuzzy_match
@@ -22,18 +25,23 @@ def get_spotify():
 
 
 def query_song(song=None, artist=None):
-    print(str(song) + " / " + str(artist))
     if song is not None and artist is not None:
-        song_search = '*{}* artist:{}'.format(song, artist)
+        query = '*{}* artist:{}'.format(song, artist)
     elif song is None and artist is not None:
-        return query_artist(artist)
+        query = "artist:" + artist
+    elif song is not None and artist is None:
+        query = song
     else:
-        song_search = song
+        song = "Back In Black AC/DC"  # proof that jarvis has a heart :)
+        query = song
 
-    data = get_spotify().search(q=song_search, type='track')['tracks']['items']
+    data = get_spotify().search(q=query, limit=6, type='track')['tracks']['items']
     if data and len(data) > 0:
-        tracks = [(best_confidence(d['name'], song), d)
-                  for d in data]
+        if song is not None:
+            tracks = [(best_confidence(d['name'], song), d) for d in data]
+        else:
+            tracks = [(best_confidence(d['name'], 'None'), d) for d in data]
+
         tracks.sort(key=lambda x: x[0])
 
         tracks.reverse()  # Place best matches first
@@ -50,15 +58,6 @@ def query_song(song=None, artist=None):
         return data
 
 
-def query_artist(artist):
-    tracks = get_spotify().search(q=("artist:" + artist), limit=10, type='track')['tracks']['items']
-    if len(tracks) > 0:
-        tracks.reverse()  # Place best matches first
-
-        return tracks
-    return None
-
-
 def best_confidence(title, query):
     """Find best match for a title against a query.
     Some titles include ( Remastered 2016 ) and similar info. This method
@@ -70,6 +69,13 @@ def best_confidence(title, query):
     Returns:
         (float) best condidence
     """
+    if query == 'None':
+        return SequenceMatcher(None, random_string_generator(5), random_string_generator(5)).ratio()
+
     best = title.lower()
     best_stripped = re.sub(r'(\(.+\)|-.+)$', '', best).strip()
     return max(fuzzy_match(best, query), fuzzy_match(best_stripped, query))
+
+
+def random_string_generator(str_size):
+    return ''.join(random.choice(string.ascii_letters + string.punctuation) for x in range(str_size))
