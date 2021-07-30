@@ -27,3 +27,14 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
     def pause_music(self, data):
         spotify.get_spotify().pause_playback()
         print("[INFO INTENT] - Paused music for Spotify")
+
+    @intent_file_handler("current_song.intent", "CurrentSongSpotifyIntent")
+    def current_song(self, data):
+        current_playback = spotify.get_spotify().current_playback()
+        if current_playback['is_playing']:
+            song_name = current_playback['item']['name']
+            artist = current_playback['item']['artists'][0]['name']
+
+            print(song_name + " from " + artist )
+
+        print("[INFO INTENT] - Current playback :  music for Spotify")

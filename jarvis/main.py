@@ -51,6 +51,7 @@ if __name__ == '__main__':
     # intent_manager.recognise("raconte moi une blague")  # WORKING
     # intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")  # WORKING
     # intent_manager.recognise("coupe la musique")  # WORKING
+    intent_manager.recognise("c'est quoi le nom de cette chanson ?")
 
     # start the flask server
     app.config['JSON_AS_ASCII'] = False
