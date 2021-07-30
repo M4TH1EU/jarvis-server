@@ -3,6 +3,8 @@ C'est quoi {query}
 Donne moi plus d'(infos|info) sur {query}
 Informe moi sur {query}
 Renseigne moi sur {query}
-Cherche sur wikipédia {query}
-Cherche {query} sur (wikipédia|wikipedia|)
+Cherche (sur (wikipédia|wikipedia|)|) {query}
+Cherche {query} (sur (wikipédia|wikipedia|)|)
 (cherche|dis-moi|renseigne (moi|toi|)) (sur|) qui (était|est) {query} (sur (wikipédia|wikipedia|)|)
+parle (moi|nous|) de {query}
+que dit (wikipedia|wikipédia) à propos de {query}
