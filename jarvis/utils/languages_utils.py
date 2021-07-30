@@ -11,6 +11,14 @@ def get_language():
     return config_utils.get_in_config("LANGUAGE")
 
 
+def get_language_only_country():
+    """
+    Returns something like "fr" for "fr-fr" in config or "en" for "en-us"
+    :return: language's country initials
+    """
+    return get_language().split("-")[0]
+
+
 def get_language_full_name(name=None):
     """
     Return for exemple french for fr-fr, english for en-en, etc (savec in languages.json in the config folder)
