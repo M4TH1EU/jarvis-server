@@ -7,7 +7,7 @@ from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils
-from utils import config_utils, flask_utils, utils
+from utils import config_utils, flask_utils
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def process_request():
     if 'sentence' not in data or not data['sentence']:
         flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
-    return {}
+    return jsonify(intent_manager.recognise(sentence=data['sentence']))
 
 
 if __name__ == '__main__':
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     JokesSkill().register()
     SpotifySkill().register()
 
-    intent_manager.process_handlers()
+    intent_manager.load_all_skills()
 
     intent_manager.recognise("cherche sur wikipédia Elon Musk")  # TO CHECK
     intent_manager.recognise("c'est qui Elon Musk")  # TO CHECK

@@ -1,5 +1,6 @@
 Joue {song} sur spotify
 Joue {song}
+Joue la chanson {song}
 Joue {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
 Mets la chanson {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
 Mets la chanson {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
@@ -23,3 +24,10 @@ Fait moi écouter {song}
 Fait moi écouter {song} sur spotify
 Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer}
 Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {singer} sur spotify
+Joue quelque chose de {singer}
+Mets de la musique du chanteur {singer}
+Joue quelque chose du chanteur {singer}
+Joue quelque chose de la chanteuse {singer}
+Mets quelque chose de {singer}
+Mets quelque chose de la chanteuse {singer}
+Mets quelque chose du chanteur {singer}

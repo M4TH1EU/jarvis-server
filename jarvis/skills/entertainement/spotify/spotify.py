@@ -12,6 +12,8 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
                                                client_secret=config_utils.get_in_config("SPOTIFY_CLIENT_SECRET"),
                                                redirect_uri='http://localhost:8888/callback/',
                                                open_browser=False))
+
+
 # TODO: Investigate the open_browser and automatic auth renewing without user interaction
 
 
@@ -19,9 +21,12 @@ def get_spotify():
     return sp
 
 
-def query_song(song, artist=None):
+def query_song(song=None, artist=None):
+    print(str(song) + " / " + str(artist))
     if song is not None and artist is not None:
         song_search = '*{}* artist:{}'.format(song, artist)
+    elif song is None and artist is not None:
+        return query_artist(artist)
     else:
         song_search = song
 
@@ -43,6 +48,15 @@ def query_song(song, artist=None):
 
         # return tracks[-1][0], {'data': data, 'name': None, 'type': 'track'}
         return data
+
+
+def query_artist(artist):
+    tracks = get_spotify().search(q=("artist:" + artist), limit=10, type='track')['tracks']['items']
+    if len(tracks) > 0:
+        tracks.reverse()  # Place best matches first
+
+        return tracks
+    return None
 
 
 def best_confidence(title, query):

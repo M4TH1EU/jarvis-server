@@ -1,3 +1,5 @@
+import json
+
 from adapt.engine import DomainIntentDeterminationEngine
 from padatious import IntentContainer
 
@@ -35,7 +37,7 @@ def train_padatious():
     padatious_intents_container.train()
 
 
-def process_handlers():
+def load_all_skills():
     for handler in intents_handlers_adapt:
         function_handler = intents_handlers_adapt.get(handler)
         intent_builder = getattr(function_handler[0], "_data", [])[0]
@@ -87,8 +89,10 @@ def recognise(sentence):
 
             # print(best_intent)  # DEBUG
 
-            # TODO: add data for adapt
             handle(best_intent['intent_type'], data={'utterance': sentence})
+
+            return best_intent
+
         except StopIteration as e:
             pass
             # print("No match... (Adapt)")
@@ -107,6 +111,9 @@ def recognise(sentence):
                 data['utterance'] = result.sent
             data.update(result.matches)  # adding the matches from padatious to the data
             handle(result.name, data)
+
+            return json.dumps(str(result))
+
         else:
             pass
             # print("No match... (Padatious)")
