@@ -39,3 +39,7 @@ class JokesSkill(Skill, metaclass=SkillRegistering):
     @intent_handler(IntentBuilder("JokingIntent").require("Joke"))
     def handle_joke(self, data):
         print(speak_joke())
+
+
+def create_skill():
+    return JokesSkill()
