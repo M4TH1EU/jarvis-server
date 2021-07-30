@@ -2,11 +2,12 @@ import flask
 import lingua_franca
 from flask import Flask, request, jsonify, Response
 
-from jarvis.ia import process
 from jarvis.skills import intent_manager
+from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
+from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils
-from utils import config_utils, flask_utils, intents_utils, utils
+from utils import config_utils, flask_utils, utils
 
 app = Flask(__name__)
 
@@ -18,21 +19,7 @@ def process_request():
     if 'sentence' not in data or not data['sentence']:
         flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
-    sentence = data['sentence']
-    tag_for_request = process.get_tag_for_sentence(sentence)
-
-    print("SENTENCE : " + sentence + " /// TAG : " + tag_for_request)
-
-    # stop here if the sentence isn't understood
-    if tag_for_request == 'dont_understand':
-        return jsonify("I didn't get that.")
-
-    path_of_intent = intents_utils.get_path(tag_for_request)
-    path_of_intent = path_of_intent.split('/skills/')[1].replace('/', '.')
-    path_of_intent = "skills." + path_of_intent + "intent"
-
-    method = utils.import_method_from_string(path_of_intent, tag_for_request)
-    return jsonify(method())
+    return {}
 
 
 if __name__ == '__main__':
@@ -41,17 +28,19 @@ if __name__ == '__main__':
     lingua_franca.load_language(lang=languages_utils.get_language().split("-")[0])
 
     # Tests
-    # WikipediaSkill().register()
-    # JokesSkill().register()
+    WikipediaSkill().register()
+    JokesSkill().register()
     SpotifySkill().register()
 
     intent_manager.process_handlers()
 
-    # intent_manager.recognise("cherche sur wikipedia Elon Musk")  # TO CHECK
+    intent_manager.recognise("cherche sur wikipédia Elon Musk")  # TO CHECK
+    intent_manager.recognise("c'est qui Elon Musk")  # TO CHECK
+    intent_manager.recognise("cherche Elon Musk sur wikipédia")  # TO CHECK
     # intent_manager.recognise("raconte moi une blague")  # WORKING
     # intent_manager.recognise("joue le morceau crazy crazy nights de KISS sur spotify")  # WORKING
     # intent_manager.recognise("coupe la musique")  # WORKING
-    intent_manager.recognise("c'est quoi le nom de cette chanson ?")
+    # intent_manager.recognise("c'est quoi le nom de cette chanson ?") # WORKING
 
     # start the flask server
     app.config['JSON_AS_ASCII'] = False

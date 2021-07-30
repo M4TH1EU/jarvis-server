@@ -35,9 +35,9 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
             song_name = current_playback['item']['name']
             artist = current_playback['item']['artists'][0]['name']
 
-            print(song_name + " from " + artist)
-
-        print("[INFO INTENT] - Current playback :  music for Spotify")
+            print("[INFO INTENT] - Current playback : " + song_name + " from " + artist + " on Spotify")
+        else:
+            print("Nothing is playing")
 
 
 def create_skill():
