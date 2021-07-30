@@ -11,3 +11,7 @@ class WikipediaSkill(Skill, metaclass=SkillRegistering):
     @intent_handler(IntentBuilder("WikipediaQueryIntent").require("Wikipedia").require("ArticleTitle"))
     def handle_wikipedia_query_intent(self, data):
         print("Handle Wikipedia Query Intent Method")
+
+
+def create_skill():
+    return WikipediaSkill()
