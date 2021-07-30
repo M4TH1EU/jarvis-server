@@ -69,7 +69,9 @@ class SkillRegistering(type):
                         if intent_type == 'adapt':
                             intent = properties[0]
                             intent_name = intent.name
-                            intent_manager.intents_handlers_adapt[f"{intent_name}"] = [getattr(cls, key), name]
+
+                            intent_manager.intents_handlers_adapt[f"{intent_name}"] = [getattr(cls, key), name, key,
+                                                                                       attrs['__module__']]
                         elif intent_type == 'padatious':
                             intent_file = properties[0]
                             intent_name = properties[1]
@@ -77,8 +79,9 @@ class SkillRegistering(type):
                             intent_category = str(attrs['__module__']).split('.')[2]
                             skill_folder = str(attrs['__module__']).split('.')[3]
 
-                            intent_manager.intents_handlers_padatious[f"{intent_name}"] = [getattr(cls, key),
+                            intent_manager.intents_handlers_padatious[f"{intent_name}"] = [key,
                                                                                            get_array_for_intent_file(
                                                                                                intent_file,
                                                                                                intent_category,
-                                                                                               skill_folder)]
+                                                                                               skill_folder),
+                                                                                           attrs['__module__']]

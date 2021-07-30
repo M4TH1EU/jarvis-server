@@ -1,6 +1,8 @@
 from adapt.engine import DomainIntentDeterminationEngine
 from padatious import IntentContainer
 
+from jarvis.utils import utils
+
 adapt_engine = DomainIntentDeterminationEngine()
 padatious_intents_container = IntentContainer('intent_cache')
 
@@ -47,13 +49,31 @@ def process_handlers():
 
 
 def handle(intent_name, data):
-    if intent_name in intents_handlers_adapt:
-        method = intents_handlers_adapt.get(intent_name)[0]
-        method(None, data)
+    module_path_str = None
+    handler_method_name = None
 
+    if intent_name in intents_handlers_adapt:
+        # something like handler_play_song_spotify (used to call the handler method from the skill imported below)
+        handler_method_name = intents_handlers_adapt.get(intent_name)[2]
+
+        # something like jarvis.skill.entertainment.spotify (used to import the create_skill method to create a new object)
+        module_path_str = intents_handlers_adapt.get(intent_name)[3]
     if intent_name in intents_handlers_padatious:
-        method = intents_handlers_padatious.get(intent_name)[0]
-        method(None, data)
+        # something like handler_play_song_spotify (used to call the handler method from the skill imported below)
+        handler_method_name = intents_handlers_padatious.get(intent_name)[0]
+
+        # something like jarvis.skill.entertainment.spotify (used to import the create_skill method to create a new object)
+        module_path_str = intents_handlers_padatious.get(intent_name)[2]
+
+    if module_path_str is not None and handler_method_name is not None:
+        # import the create_skill method from the skill using the skill module path
+        create_skill_method = utils.import_method_from_string(module_path_str, "create_skill")
+
+        # create a new object of the right skill for the utterance
+        skill = create_skill_method()
+
+        # import and call the handler method from the skill
+        getattr(skill, handler_method_name)(data=data)
 
 
 def recognise(sentence):
@@ -65,12 +85,13 @@ def recognise(sentence):
             best_intents = adapt_engine.determine_intent(sentence, 100)
             best_intent = next(best_intents)
 
-            print(best_intent)  # DEBUG
+            # print(best_intent)  # DEBUG
 
             # TODO: add data for adapt
-            handle(best_intent['intent_type'], [])
+            handle(best_intent['intent_type'], data={'utterance': sentence})
         except StopIteration as e:
-            print("No match... (Adapt)")
+            pass
+            # print("No match... (Adapt)")
 
     if len(intents_handlers_padatious) > 0:
         result = padatious_intents_container.calc_intent(sentence)
@@ -87,4 +108,6 @@ def recognise(sentence):
             data.update(result.matches)  # adding the matches from padatious to the data
             handle(result.name, data)
         else:
-            print("No match... (Padatious)")
+            pass
+            # print("No match... (Padatious)")
+    print()
