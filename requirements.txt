@@ -11,3 +11,4 @@ lingua-franca~=0.4.2
 spotipy~=2.18.0
 translate~=3.6.1
 wikipedia~=1.4.0
+SpeechRecognition~=3.8.1
