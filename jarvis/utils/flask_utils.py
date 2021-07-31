@@ -2,11 +2,12 @@ import json
 
 import flask
 import speech_recognition as sr
-from flask import Response, request, jsonify
+from flask import Response, request, jsonify, Flask
 
-from jarvis.main import app
 from jarvis.skills import intent_manager
 from jarvis.utils import config_utils, languages_utils
+
+app = Flask(__name__)
 
 
 @app.route("/process", methods=['POST'])

@@ -1,13 +1,10 @@
 import lingua_franca
-from flask import Flask
 
 from jarvis.skills import intent_manager
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils, flask_utils
-
-app = Flask(__name__)
 
 if __name__ == '__main__':
     # Load lingua franca in the memory
