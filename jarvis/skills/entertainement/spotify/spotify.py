@@ -58,6 +58,10 @@ def query_song(song=None, artist=None):
         return data
 
 
+def is_music_playing():
+    return sp.current_user_playing_track()['is_playing']
+
+
 def best_confidence(title, query):
     """Find best match for a title against a query.
     Some titles include ( Remastered 2016 ) and similar info. This method

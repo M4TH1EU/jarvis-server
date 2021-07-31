@@ -1,8 +1,1 @@
-mets la musique sur pause
-arrête la musique
-coupe la musique
-mets sur pause
-mets spotify en pause
-mets spotify sur pause
-pause
-mets la musique en pause
+(mets|arrête|coupe) (moi voir|) (le|la|) (musique|son|spotify) ((sur|en) pause|)

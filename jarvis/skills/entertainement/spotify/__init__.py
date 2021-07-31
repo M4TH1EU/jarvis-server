@@ -22,14 +22,26 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
 
             spotify.get_spotify().add_to_queue(uri=song_lists_matching[0]['uri'])
             spotify.get_spotify().next_track()
-            # spotify.get_spotify().start_playback(context_uri=song_lists_matching[0]['uri'])
         else:
             print("Nothing found for :" + str(data))
 
     @intent_file_handler("pause_music.intent", "PauseSpotifyIntent")
     def pause_music(self, data):
-        spotify.get_spotify().pause_playback()
-        print("[INFO INTENT] - Paused music for Spotify")
+        if spotify.is_music_playing():
+            spotify.get_spotify().pause_playback()
+            print("[INFO INTENT] - Paused music for Spotify")
+        else:
+            # TODO: speak : nothing is playing on spotify
+            pass
+
+    @intent_file_handler("resume_music.intent", "ResumeSpotifyIntent")
+    def resume_music(self, data):
+        if not spotify.is_music_playing():
+            spotify.get_spotify().start_playback()
+            print("[INFO INTENT] - Resumed music for Spotify")
+        else:
+            # TODO: speak : already playing song on spotify
+            pass
 
     @intent_file_handler("current_song.intent", "CurrentSongSpotifyIntent")
     def current_song(self, data):
