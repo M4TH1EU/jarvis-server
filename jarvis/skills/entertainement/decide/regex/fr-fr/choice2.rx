@@ -1,1 +1,1 @@
-(?P<dummy>\w+|(\w+ au \w+)) (?:ou|et) (?P<choice2>\w+|(\w+ au \w+))
+(?P<dummy2>\w+|(\w+ au \w+)) (?:ou|et) (?P<choice2>\w+|(\w+ au \w+))
