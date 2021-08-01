@@ -1,6 +1,7 @@
 import glob
 import os
 import random
+import threading
 import types
 
 from jarvis import get_path_file
@@ -35,6 +36,11 @@ class Skill:
 
                 for key, val in data.items():
                     if "{{" + key + "}}" in random_line:
+
+                        # as the french tts don't support float in sentence, convert it to an integer
+                        if is_float(val):
+                            val = str(int(float(val)))
+
                         random_line = random_line.replace("{{" + key + "}}", val)
 
                 infile.close()
@@ -42,6 +48,10 @@ class Skill:
             self.speak(random_line)
 
         return "Error, dialog not found for : " + dialog
+
+    def speak_dialog_threaded(self, dialog, data=None):
+        thread = threading.Thread(target=self.speak_dialog, args=[dialog, data])
+        thread.start()
 
     def register(self):
         self.register_entities()
@@ -80,6 +90,14 @@ def get_array_for_intent_file(filename, category, skill_folder):
             lines.append(line.replace('\n', ''))
 
         return lines
+
+
+def is_float(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 
 class SkillRegistering(type):
