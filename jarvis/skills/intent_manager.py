@@ -124,4 +124,5 @@ def recognise(sentence, client_ip=None, client_port=None):
         else:
             pass
             # print("No match... (Padatious)")
-    print()
+
+    return "I didn't understrand..."
