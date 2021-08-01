@@ -10,14 +10,13 @@ from spotipy import SpotifyOAuth
 from jarvis.utils import config_utils
 
 scope = "user-read-playback-state, user-modify-playback-state, user-read-currently-playing"
+
+# TODO: Investigate the open_browser and automatic auth renewing without user interaction
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
                                                client_id=config_utils.get_in_config("SPOTIFY_CLIENT_ID"),
                                                client_secret=config_utils.get_in_config("SPOTIFY_CLIENT_SECRET"),
                                                redirect_uri='http://localhost:8888/callback/',
                                                open_browser=False))
-
-
-# TODO: Investigate the open_browser and automatic auth renewing without user interaction
 
 
 def get_spotify():
