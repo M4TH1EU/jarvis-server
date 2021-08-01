@@ -11,6 +11,7 @@ Mets (moi|) voir un peu de  {artist} (sur spotify|)
 Mets voir {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
 Fait moi écouter {song} (sur spotify|)
 Fait moi écouter {song} (de|des|du groupe|du chanteur|de la chanteuse) {artist} (sur spotify|)
+Fait moi écouter un peu de {artist} (sur spotify|)
 Mets de la musique (de la chanteuse|du chanteur|de) {artist}
 (Joue|Mets) quelque chose (de la chanteuse|du chanteur|de) {artist}
 Joue (un|une) (chanson|morceau|titre|) (de la chanteuse|du chanteur|de) {artist}
@@ -22,4 +23,4 @@ Tu peux jouer le morceau {song}
 Tu peux jouer le morceau {song} (de la chanteuse|du chanteur|de) {artist}
 Joue moi voir {song} (sur spotify|)
 Joue moi voir {song} de {artist} (sur spotify|)
-(Joue|Mets) (moi|) un peu de {artist} (sur spotify|)
+(Joue|Mets) (moi|) (un peu de|du) {artist} (sur spotify|)
