@@ -71,14 +71,16 @@ def handle(intent_name, data):
         # import the create_skill method from the skill using the skill module path
         create_skill_method = utils.import_method_from_string(module_path_str, "create_skill")
 
+        data = {'client_ip': data['client_ip'], 'client_port': data['client_port']}
+
         # create a new object of the right skill for the utterance
-        skill = create_skill_method()
+        skill = create_skill_method(data)
 
         # import and call the handler method from the skill
         getattr(skill, handler_method_name)(data=data)
 
 
-def recognise(sentence):
+def recognise(sentence, client_ip=None, client_port=None):
     sentence = sentence.lower()
     print(sentence)
 
@@ -89,7 +91,8 @@ def recognise(sentence):
 
             # print(best_intent)  # DEBUG
 
-            handle(best_intent['intent_type'], data={'utterance': sentence})
+            handle(best_intent['intent_type'],
+                   data={'utterance': sentence, 'client-ip': client_ip, 'client-port': client_port})
 
             return best_intent
 
@@ -109,6 +112,10 @@ def recognise(sentence):
                     result.sent)  # add the sentence (utterance) to the data given to the intent handler
             else:
                 data['utterance'] = result.sent
+
+            data['client_ip'] = client_ip
+            data['client_port'] = client_port
+
             data.update(result.matches)  # adding the matches from padatious to the data
             handle(result.name, data)
 
