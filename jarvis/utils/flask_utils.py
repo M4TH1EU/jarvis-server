@@ -31,7 +31,8 @@ def process_audio_request():
 
     result_stt = r.recognize_google(audio, language=languages_utils.get_language_only_country())
 
-    return jsonify(intent_manager.recognise(sentence=result_stt))
+    return jsonify(
+        intent_manager.recognise(result_stt, request.headers.get('Client-Ip'), request.headers.get('Client-Port')))
 
 
 def get_data_in_request(flask_request):
