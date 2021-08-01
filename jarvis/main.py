@@ -4,7 +4,7 @@ from jarvis.skills import intent_manager
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
-from jarvis.utils import languages_utils, flask_utils
+from jarvis.utils import languages_utils, flask_utils, client_utils
 
 if __name__ == '__main__':
     # Load lingua franca in the memory
@@ -26,5 +26,7 @@ if __name__ == '__main__':
     # intent_manager.recognise("coupe la musique")  # WORKING
     # intent_manager.recognise("c'est quoi le nom de cette chanson ?") # WORKING
 
+    client_utils.speak("Abonnez-vous pour d'autres vidéos de ce type et lâchez un pouce bleu ça fait toujours plaisir. ", "medium")
     # Start the flask server
     flask_utils.start_server()
+
