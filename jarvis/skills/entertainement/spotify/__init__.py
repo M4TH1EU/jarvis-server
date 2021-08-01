@@ -4,8 +4,8 @@ from jarvis.skills.entertainement.spotify import spotify
 
 
 class SpotifySkill(Skill, metaclass=SkillRegistering):
-    def __init__(self):
-        super().__init__("SpotifySkill")
+    def __init__(self, data=dict):
+        super().__init__("SpotifySkill", data)
 
     @intent_file_handler("play_a_song.intent", "PlaySongWithSpotifyIntent")
     def handle_play_a_song(self, data):
@@ -31,6 +31,7 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
             spotify.get_spotify().pause_playback()
             print("[INFO INTENT] - Paused music for Spotify")
         else:
+            self.speak("Rien n'est en cours de lecture sur Spotify...")
             # TODO: speak : nothing is playing on spotify
             pass
 
@@ -55,5 +56,5 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
             print("Nothing is playing")
 
 
-def create_skill():
-    return SpotifySkill()
+def create_skill(data):
+    return SpotifySkill(data)

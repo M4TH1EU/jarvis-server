@@ -4,16 +4,22 @@ import types
 
 from jarvis import get_path_file
 from jarvis.skills import intent_manager
-from jarvis.utils import languages_utils
+from jarvis.utils import languages_utils, client_utils
 
 
 class Skill:
-    def __init__(self, name):
+    def __init__(self, name, data):
         self.name = name
+
+        self.client_ip = data['client_ip']
+        self.client_port = data['client_port']
 
         path = self.__module__.split(".")
         self.category = path[2]
         self.skill_folder = path[3]
+
+    def speak(self, sentence):
+        client_utils.speak(sentence, self.client_ip, self.client_port)
 
     def register(self):
         self.register_entities()

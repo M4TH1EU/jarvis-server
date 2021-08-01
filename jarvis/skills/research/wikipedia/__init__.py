@@ -4,8 +4,8 @@ from jarvis.skills.research.wikipedia import wikipedia
 
 
 class WikipediaSkill(Skill, metaclass=SkillRegistering):
-    def __init__(self):
-        super().__init__("WikipediaSkill")
+    def __init__(self, data=dict):
+        super().__init__("WikipediaSkill", data)
 
     @intent_file_handler("search.wikipedia.intent", "WikipediaQueryIntent")
     def handle_wikipedia_query_intent(self, data):
@@ -17,5 +17,5 @@ class WikipediaSkill(Skill, metaclass=SkillRegistering):
             pass
 
 
-def create_skill():
-    return WikipediaSkill()
+def create_skill(data):
+    return WikipediaSkill(data)

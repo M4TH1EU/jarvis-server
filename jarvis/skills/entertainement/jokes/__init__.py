@@ -33,13 +33,13 @@ def speak_joke():
 
 
 class JokesSkill(Skill, metaclass=SkillRegistering):
-    def __init__(self):
-        super().__init__("JokesSkill")
+    def __init__(self, data=dict):
+        super().__init__("JokesSkill", data)
 
     @intent_handler(IntentBuilder("JokingIntent").require("Joke"))
     def handle_joke(self, data):
         print(speak_joke())
 
 
-def create_skill():
-    return JokesSkill()
+def create_skill(data):
+    return JokesSkill(data)
