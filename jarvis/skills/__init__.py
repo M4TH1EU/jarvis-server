@@ -1,5 +1,6 @@
 import glob
 import os
+import random
 import types
 
 from jarvis import get_path_file
@@ -18,8 +19,26 @@ class Skill:
         self.category = path[2]
         self.skill_folder = path[3]
 
+        self.path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
+
     def speak(self, sentence):
         client_utils.speak(sentence, self.client_ip, self.client_port)
+
+    def speak_dialog(self, dialog, data):
+        file = self.path + "/dialog/" + languages_utils.get_language() + "/" + dialog + ".dialog"
+        if os.path.exists(file):
+            with open(file, "r") as infile:
+                random_line = random.choice(infile.readlines())
+
+                for key, val in data.items():
+                    if "{{" + key + "}}" in random_line:
+                        random_line = random_line.replace("{{" + key + "}}", val)
+
+                infile.close()
+
+            self.speak(random_line)
+
+        return "Error, dialog not found for : " + dialog
 
     def register(self):
         self.register_entities()
@@ -27,8 +46,7 @@ class Skill:
         print("[" + self.name + "] Registered entity/entities and regex(s)")
 
     def register_entities(self):
-        path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
-        path = path + "/vocab/" + languages_utils.get_language() + "/*.voc"
+        path = self.path + "/vocab/" + languages_utils.get_language() + "/*.voc"
 
         files = glob.glob(path, recursive=True)
         for file in files:
@@ -39,8 +57,7 @@ class Skill:
                     intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
 
     def register_regex(self):
-        path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
-        path = path + "/regex/" + languages_utils.get_language() + "/*.rx"
+        path = self.path + "/regex/" + languages_utils.get_language() + "/*.rx"
 
         files = glob.glob(path, recursive=True)
         for file in files:
