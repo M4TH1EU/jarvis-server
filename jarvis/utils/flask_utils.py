@@ -10,14 +10,15 @@ from jarvis.utils import config_utils, languages_utils
 app = Flask(__name__)
 
 
-@app.route("/process", methods=['POST'])
-def process_request():
+@app.route("/process_text_request", methods=['POST'])
+def process_text_request():
     data = get_data_in_request(request)
 
     if 'sentence' not in data or not data['sentence']:
         flask.abort(Response('You must provide a \'sentence\' parameter (not empty aswell)!'))
 
-    return jsonify(intent_manager.recognise(sentence=data['sentence']))
+    return jsonify(intent_manager.recognise(data['sentence'], request.headers.get('Client-Ip'),
+                                            request.headers.get('Client-Port')))
 
 
 @app.route("/process_audio_request", methods=['POST'])
