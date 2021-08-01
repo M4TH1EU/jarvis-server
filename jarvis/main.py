@@ -26,7 +26,6 @@ if __name__ == '__main__':
     # intent_manager.recognise("coupe la musique")  # WORKING
     # intent_manager.recognise("c'est quoi le nom de cette chanson ?") # WORKING
 
-    client_utils.speak("Abonnez-vous pour d'autres vidéos de ce type et lâchez un pouce bleu ça fait toujours plaisir. ", "medium")
     # Start the flask server
     flask_utils.start_server()
 
