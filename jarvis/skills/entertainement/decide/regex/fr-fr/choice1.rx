@@ -1,0 +1,1 @@
+(?P<choice1>\w+|(\w+ au \w+)) (?:ou|et) (?P<dummy>\w+|(\w+ au \w+))

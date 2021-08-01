@@ -1,0 +1,7 @@
+(décide|choisis|choisi) entre {choice1} (et|ou) {choice2}
+qui-est ce qui va gagner {choice1} ou {choice2}
+tu pense (que|) c'est {choice1} ou {choice2} qui gagne
+entre {choice1} et {choice2}
+{choice1} ou {choice2}
+tu prefère (le|les|la) {choice1} (ou|ou bien) (le|les|la) {choice2}
+choisi entre {choice1} et {choice2}

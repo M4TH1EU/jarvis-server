@@ -1,6 +1,7 @@
 import lingua_franca
 
 from jarvis.skills import intent_manager
+from jarvis.skills.entertainement.decide import DecideSkill
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.productivity.speedtest import SpeedTestSkill
@@ -17,6 +18,7 @@ if __name__ == '__main__':
     JokesSkill().register()
     SpotifySkill().register()
     SpeedTestSkill().register()
+    DecideSkill().register()
 
     # Load all skills
     intent_manager.load_all_skills()
