@@ -92,7 +92,7 @@ def recognise(sentence, client_ip=None, client_port=None):
             # print(best_intent)  # DEBUG
 
             handle(best_intent['intent_type'],
-                   data={'utterance': sentence, 'client-ip': client_ip, 'client-port': client_port})
+                   data={'utterance': sentence, 'client_ip': client_ip, 'client_port': client_port})
 
             return best_intent
 
