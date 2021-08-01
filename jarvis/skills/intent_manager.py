@@ -91,8 +91,11 @@ def recognise(sentence, client_ip=None, client_port=None):
 
             # print(best_intent)  # DEBUG
 
-            handle(best_intent['intent_type'],
-                   data={'utterance': sentence, 'client_ip': client_ip, 'client_port': client_port})
+            data = {'utterance': sentence, 'client_ip': client_ip, 'client_port': client_port}
+            for key, val in best_intent.items():
+                if key != 'intent_type' and key != 'target' and key != 'confidence':
+                    data[key] = val
+            handle(best_intent['intent_type'], data=data)
 
             return best_intent
 
