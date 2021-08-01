@@ -3,8 +3,9 @@ import lingua_franca
 from jarvis.skills import intent_manager
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
+from jarvis.skills.productivity.speedtest import SpeedTestSkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
-from jarvis.utils import languages_utils, flask_utils, client_utils
+from jarvis.utils import languages_utils, flask_utils
 
 if __name__ == '__main__':
     # Load lingua franca in the memory
@@ -15,6 +16,7 @@ if __name__ == '__main__':
     WikipediaSkill().register()
     JokesSkill().register()
     SpotifySkill().register()
+    SpeedTestSkill().register()
 
     # Load all skills
     intent_manager.load_all_skills()
@@ -28,4 +30,3 @@ if __name__ == '__main__':
 
     # Start the flask server
     flask_utils.start_server()
-
