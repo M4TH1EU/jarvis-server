@@ -15,10 +15,11 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
                                                  data['artist'] if 'artist' in data else None)
 
         if song_lists_matching is not None and len(song_lists_matching) >= 1:
-            print(
-                "[INFO INTENT] - Now playing : " + song_lists_matching[0]['uri'] + " / " + song_lists_matching[0][
-                    'name'] + " / " +
-                song_lists_matching[0]['artists'][0]['name'])
+            if 'artist' in data and 'song' not in data:
+                self.speak_dialog("playing_from_artist", {'artist': song_lists_matching[0]['artists'][0]['name']})
+            else:
+                self.speak_dialog("playing_song_from_artist", {'song': song_lists_matching[0][
+                    'name'], 'artist': song_lists_matching[0]['artists'][0]['name']})
 
             spotify.get_spotify().add_to_queue(uri=song_lists_matching[0]['uri'])
             spotify.get_spotify().next_track()
