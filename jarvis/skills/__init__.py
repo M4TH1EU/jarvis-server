@@ -24,7 +24,10 @@ class Skill:
     def speak(self, sentence):
         client_utils.speak(sentence, self.client_ip, self.client_port)
 
-    def speak_dialog(self, dialog, data):
+    def speak_dialog(self, dialog, data=None):
+        if data is None:
+            data = {}
+
         file = self.path + "/dialog/" + languages_utils.get_language() + "/" + dialog + ".dialog"
         if os.path.exists(file):
             with open(file, "r") as infile:
