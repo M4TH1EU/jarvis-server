@@ -71,10 +71,10 @@ def handle(intent_name, data):
         # import the create_skill method from the skill using the skill module path
         create_skill_method = utils.import_method_from_string(module_path_str, "create_skill")
 
-        data = {'client_ip': data['client_ip'], 'client_port': data['client_port']}
+        skill_init_data = {'client_ip': data['client_ip'], 'client_port': data['client_port']}
 
         # create a new object of the right skill for the utterance
-        skill = create_skill_method(data)
+        skill = create_skill_method(skill_init_data)
 
         # import and call the handler method from the skill
         getattr(skill, handler_method_name)(data=data)
