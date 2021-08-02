@@ -84,6 +84,10 @@ def recognise(sentence, client_ip=None, client_port=None):
     sentence = sentence.lower()
     print(sentence)
 
+    data = dict()
+    data['client_ip'] = client_ip
+    data['client_port'] = client_port
+
     if len(intents_handlers_adapt) > 0:
         try:
             best_intents = adapt_engine.determine_intent(sentence, 100)
@@ -91,7 +95,7 @@ def recognise(sentence, client_ip=None, client_port=None):
 
             # print(best_intent)  # DEBUG
 
-            data = {'utterance': sentence, 'client_ip': client_ip, 'client_port': client_port}
+            data['utterance'] = sentence
             for key, val in best_intent.items():
                 if key != 'intent_type' and key != 'target' and key != 'confidence':
                     data[key] = val
@@ -115,9 +119,6 @@ def recognise(sentence, client_ip=None, client_port=None):
                     result.sent)  # add the sentence (utterance) to the data given to the intent handler
             else:
                 data['utterance'] = result.sent
-
-            data['client_ip'] = client_ip
-            data['client_port'] = client_port
 
             data.update(result.matches)  # adding the matches from padatious to the data
             handle(result.name, data)
