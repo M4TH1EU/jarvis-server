@@ -1,2 +1,2 @@
-(Mets|Lance) un minuteur (de|pour dans|pour) {amount} {time_unit}
-Lance un minuteur de {amount} {time_unit} (nommé|appelé|qui s'appelle|et appelle le) {name}
+(Mets|Lance|Démarre) un (minuteur|timer) (de|pour dans|pour) {amount} {time_unit}
+(Mets|Lance|Démarre) un (minuteur|timer) de {amount} {time_unit} (nommé|appelé|qui s'appelle|et appelle le) {name}
