@@ -30,22 +30,17 @@ class Skill:
             data = {}
 
         file = self.path + "/dialog/" + languages_utils.get_language() + "/" + dialog + ".dialog"
-        if os.path.exists(file):
-            with open(file, "r") as infile:
-                random_line = random.choice(infile.readlines())
+        random_line = get_random_line_from_file(file)
 
-                for key, val in data.items():
-                    if "{{" + key + "}}" in random_line:
+        for key, val in data.items():
+            if "{{" + key + "}}" in random_line:
+                # TODO: replace when found a better TTS engine for french
+                # as the french tts don't support float in sentence, convert it to an integer
+                if is_float(val):
+                    # val = str(int(float(val)))  # convert a float to integer
+                    val = str(val).split(".")[0] + " virgule " + str(val).split(".")[1]
 
-                        # TODO: replace when found a better TTS engine for french
-                        # as the french tts don't support float in sentence, convert it to an integer
-                        if is_float(val):
-                            # val = str(int(float(val)))  # convert a float to integer
-                            val = str(val).split(".")[0] + " virgule " + str(val).split(".")[1]
-
-                        random_line = random_line.replace("{{" + key + "}}", val)
-
-                infile.close()
+                    random_line = random_line.replace("{{" + key + "}}", val)
 
             self.speak(random_line)
 
@@ -64,46 +59,78 @@ class Skill:
     def register_entities_adapt(self):
         path = self.path + "/vocab/" + languages_utils.get_language() + "/*.voc"
 
-        files = glob.glob(path, recursive=True)
-        for file in files:
-            with open(file, "r") as infile:
-                for line in infile.readlines():
-                    filename = file.split("/")[-1].split(".voc")[0]
+        all_lines_by_file_dict = get_lines_of_all_files_in_path(path, return_as_dict_with_filename=True)
 
-                    intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
+        for filename in all_lines_by_file_dict:
+            for line in all_lines_by_file_dict.get(filename):
+                intent_manager.register_entity_adapt(line, filename, self.name)
 
     def register_entities_padatious(self):
         path = self.path + "/vocab/" + languages_utils.get_language() + "/*.entity"
 
-        files = glob.glob(path, recursive=True)
-        for file in files:
-            with open(file, "r") as infile:
-                for line in infile.readlines():
-                    filename = file.split("/")[-1].split(".entity")[0]
+        all_lines_by_file_dict = get_lines_of_all_files_in_path(path, return_as_dict_with_filename=True)
 
-                    intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
+        for filename in all_lines_by_file_dict:
+            intent_manager.register_entity_padatious(filename, all_lines_by_file_dict.get(filename))
 
     def register_regex(self):
         path = self.path + "/regex/" + languages_utils.get_language() + "/*.rx"
 
-        files = glob.glob(path, recursive=True)
-        for file in files:
-            with open(file, "r") as infile:
-                for line in infile.readlines():
-                    intent_manager.register_regex_adapt(line.replace('\n', ''), self.name)
+        result = get_lines_of_all_files_in_path(path)
+        for line in result:
+            intent_manager.register_regex_adapt(line, self.name)
+
+
+def get_random_line_from_file(filepath):
+    if os.path.exists(filepath):
+        with open(filepath, "r") as infile:
+            random_line = random.choice(infile.readlines())
+            infile.close()
+            return random_line
+    else:
+        print("File " + filepath + " doesn't exist...")
+
+
+def get_all_lines_from_file(filepath):
+    if os.path.exists(filepath):
+        with open(file=filepath, mode="r") as infile:
+            lines = []
+
+            for line in infile.readlines():
+                lines.append(line.removesuffix('\n'))
+
+            infile.close()
+
+            return lines
+    else:
+        print("File " + filepath + " doesn't exist...")
+
+
+def get_lines_of_all_files_in_path(path, return_as_dict_with_filename=False):
+    files = glob.glob(path, recursive=True)
+    result = dict()
+    result_list = []
+
+    for file in files:
+        lines = get_all_lines_from_file(file)
+
+        if return_as_dict_with_filename:
+            filename = file.split("/")[-1].split('.')[0]
+            result[filename] = lines
+        else:
+            result_list.extend(lines)
+
+    if return_as_dict_with_filename:
+        return result
+
+    return result_list
 
 
 def get_array_for_intent_file(filename, category, skill_folder):
     path = os.path.dirname(get_path_file.__file__) + "/skills/" + category + "/" + skill_folder
     path = path + "/vocab/" + languages_utils.get_language() + "/" + filename
 
-    with open(file=path, mode="r") as infile:
-        lines = []
-
-        for line in infile.readlines():
-            lines.append(line.replace('\n', ''))
-
-        return lines
+    return get_all_lines_from_file(path)
 
 
 def is_float(value):
