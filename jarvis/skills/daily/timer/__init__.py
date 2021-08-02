@@ -9,17 +9,21 @@ class TimerSkill(Skill, metaclass=SkillRegistering):
     def __init__(self, data=dict):
         super().__init__("TimerSkill", data)
 
+    def register(self):
+        super(TimerSkill, self).register()
+
+
     @intent_file_handler("start_timer.intent", "StartTimerIntent")
     def handle_start_timer(self, data):
         print(data)
-        if 'amount' in data and 'time_unit' in data:
-            print(extract_duration(data['amount'] + " " + data['time_unit']), languages_utils.get_language())
+        if 'duration' in data:
+            print(extract_duration(data['duration']), languages_utils.get_language())
 
             if 'name' in data:
-                print("Start timer for {} {} named {}".format(data['amount'], data['time_unit'], data['name']))
+                print("Start timer for {} named {}".format(data['duration'], data['name']))
                 pass
             else:
-                print("Start timer for {} {} without name".format(data['amount'], data['time_unit']))
+                print("Start timer for {} without name".format(data['duration']))
                 # TODO : ask for name
                 pass
         else:
