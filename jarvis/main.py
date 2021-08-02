@@ -1,6 +1,7 @@
 import lingua_franca
 
 from jarvis.skills import intent_manager
+from jarvis.skills.daily.timer import TimerSkill
 from jarvis.skills.entertainement.decide import DecideSkill
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
@@ -19,6 +20,7 @@ if __name__ == '__main__':
     SpotifySkill().register()
     SpeedTestSkill().register()
     DecideSkill().register()
+    TimerSkill().register()
 
     # Load all skills
     intent_manager.load_all_skills()
