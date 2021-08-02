@@ -1,1 +1,1 @@
-(?:de|pour dans|pour) (?<Time>.+)(?:(?:nommé|appelé|qui s'appelle|et appelle le) (?<Name>.*)?)
+(?:de|pour dans|pour) (?P<Time>.+)(?:(?:nommé|appelé|qui s'appelle|et appelle le) (?P<Name>.*)?)

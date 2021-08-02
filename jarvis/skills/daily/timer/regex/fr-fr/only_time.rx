@@ -1,1 +1,1 @@
-(?:de|pour dans|pour) (?<TimeOnly>.+)
+(?:de|pour dans|pour) (?P<TimeOnly>.+)
