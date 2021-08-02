@@ -118,7 +118,6 @@ def recognise(sentence, client_ip=None, client_port=None):
         # print(padatious_intents_container.calc_intents(sentence))  # DEBUG
 
         if result.conf >= 0.2:
-            data = dict()
             if isinstance(result.sent, list):
                 data['utterance'] = " ".join(
                     result.sent)  # add the sentence (utterance) to the data given to the intent handler
