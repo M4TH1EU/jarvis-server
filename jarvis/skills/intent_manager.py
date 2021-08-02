@@ -65,11 +65,9 @@ def handle(intent_name, data):
 
         # something like jarvis.skill.entertainment.spotify (used to import the create_skill method to create a new object)
         module_path_str = intents_handlers_adapt.get(intent_name)[3]
-    if intent_name in intents_handlers_padatious:
-        # something like handler_play_song_spotify (used to call the handler method from the skill imported below)
-        handler_method_name = intents_handlers_padatious.get(intent_name)[0]
 
-        # something like jarvis.skill.entertainment.spotify (used to import the create_skill method to create a new object)
+    if intent_name in intents_handlers_padatious:
+        handler_method_name = intents_handlers_padatious.get(intent_name)[0]
         module_path_str = intents_handlers_padatious.get(intent_name)[2]
 
     if module_path_str is not None and handler_method_name is not None:
@@ -92,45 +90,71 @@ def recognise(sentence, client_ip=None, client_port=None):
     data = dict()
     data['client_ip'] = client_ip
     data['client_port'] = client_port
+    data['utterance'] = sentence
 
+    best_intent_adapt = get_best_intent_adapt(sentence)
+    best_intent_padatious = get_best_intent_padatious(sentence)
+
+    confidence_adapt = get_confidence(best_intent_adapt)
+    confidence_padatious = get_confidence(best_intent_padatious)
+
+    if confidence_adapt < 0.2 and confidence_padatious < 0.2:
+        return "I didn't understand..."
+    else:
+        return handle_intent(data,
+                             best_intent_adapt if confidence_adapt > confidence_padatious else best_intent_padatious)
+
+
+def get_confidence(intent):
+    if intent is None:
+        return 0
+
+    if 'confidence' in intent:
+        return intent['confidence']
+    elif hasattr(intent, 'conf'):
+        return intent.conf
+    else:
+        return 0
+
+
+def get_best_intent_adapt(sentence):
     if len(intents_handlers_adapt) > 0:
         try:
             best_intents = adapt_engine.determine_intent(sentence, 100)
             best_intent = next(best_intents)
 
-            # print(best_intent)  # DEBUG
-
-            data['utterance'] = sentence
-            for key, val in best_intent.items():
-                if key != 'intent_type' and key != 'target' and key != 'confidence':
-                    data[key] = val
-            handle(best_intent['intent_type'], data=data)
-
             return best_intent
 
-        except StopIteration as e:
+        except StopIteration:
             pass
-            # print("No match... (Adapt)")
 
+    return None  # No match (Adapt)
+
+
+def get_best_intent_padatious(sentence):
     if len(intents_handlers_padatious) > 0:
         result = padatious_intents_container.calc_intent(sentence)
-        # print(result)  # DEBUG
-        # print(padatious_intents_container.calc_intents(sentence))  # DEBUG
+        return result
+    else:
+        return None  # No match (Padatious)
 
-        if result.conf >= 0.2:
-            if isinstance(result.sent, list):
-                data['utterance'] = " ".join(
-                    result.sent)  # add the sentence (utterance) to the data given to the intent handler
-            else:
-                data['utterance'] = result.sent
 
-            data.update(result.matches)  # adding the matches from padatious to the data
-            handle(result.name, data)
+def handle_intent(data, intent):
+    if 'intent_type' in intent:
+        return handle_adapt_intent(data, intent)
+    elif hasattr(intent, 'name'):
+        return handle_padatious_intent(data, intent)
 
-            return json.dumps(str(result))
 
-        else:
-            pass
-            # print("No match... (Padatious)")
+def handle_adapt_intent(data, best_intent):
+    for key, val in best_intent.items():
+        if key != 'intent_type' and key != 'target' and key != 'confidence':
+            data[key] = val
+    handle(best_intent['intent_type'], data=data)
+    return best_intent
 
-    return "I didn't understrand..."
+
+def handle_padatious_intent(data, result):
+    data.update(result.matches)  # adding the matches from padatious to the data
+    handle(result.name, data)
+    return json.dumps(str(result))
