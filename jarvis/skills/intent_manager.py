@@ -17,6 +17,11 @@ def register_entity_adapt(entity_value, entity_type, domain):
     # print("[Adapt]: Added entity with type " + entity_type + " for " + domain)
 
 
+def register_entity_padatious(entity_name, list):
+    padatious_intents_container.add_entity(entity_name, list)
+    # print("[Padatious]: Added entity with name " + entity_name + " with " str(len(list)) + "examples.")
+
+
 def register_regex_adapt(regex, domain):
     adapt_engine.register_regex_entity(regex, domain)
     # print("[Adapt]: Added new regex for " + domain)

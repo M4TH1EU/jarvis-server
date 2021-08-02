@@ -56,11 +56,12 @@ class Skill:
         thread.start()
 
     def register(self):
-        self.register_entities()
+        self.register_entities_adapt()
+        self.register_entities_padatious()
         self.register_regex()
         print("[" + self.name + "] Registered entity/entities and regex(s)")
 
-    def register_entities(self):
+    def register_entities_adapt(self):
         path = self.path + "/vocab/" + languages_utils.get_language() + "/*.voc"
 
         files = glob.glob(path, recursive=True)
@@ -68,6 +69,17 @@ class Skill:
             with open(file, "r") as infile:
                 for line in infile.readlines():
                     filename = file.split("/")[-1].split(".voc")[0]
+
+                    intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
+
+    def register_entities_padatious(self):
+        path = self.path + "/vocab/" + languages_utils.get_language() + "/*.entity"
+
+        files = glob.glob(path, recursive=True)
+        for file in files:
+            with open(file, "r") as infile:
+                for line in infile.readlines():
+                    filename = file.split("/")[-1].split(".entity")[0]
 
                     intent_manager.register_entity_adapt(line.replace('\n', ''), filename, self.name)
 
