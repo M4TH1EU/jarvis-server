@@ -83,6 +83,11 @@ def handle(intent_name, data):
         getattr(skill, handler_method_name)(data=data)
 
 
+def train_padatious():
+    print("Training PADATIOUS intents models, can take a few minutes (first time) or a few seconds (startup)")
+    padatious_intents_container.train(timeout=120)
+
+
 def recognise(sentence, client_ip=None, client_port=None):
     sentence = sentence.lower()
     print(sentence)

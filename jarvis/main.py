@@ -5,6 +5,7 @@ from jarvis.skills.daily.timer import TimerSkill
 from jarvis.skills.entertainement.decide import DecideSkill
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
+from jarvis.skills.entertainement.weather import WeatherSkill
 from jarvis.skills.productivity.speedtest import SpeedTestSkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils, flask_utils
@@ -21,9 +22,13 @@ if __name__ == '__main__':
     SpeedTestSkill().register()
     DecideSkill().register()
     TimerSkill().register()
+    WeatherSkill().register()
 
     # Load all skills
     intent_manager.load_all_skills()
+
+    # Train Padatious models
+    intent_manager.train_padatious()
 
     # Bunch of tests
     # intent_manager.recognise("cherche Elon Musk sur wikipédia")  # WORKING
