@@ -10,6 +10,18 @@ class WeatherSkill(Skill, metaclass=SkillRegistering):
     def handle_weather(self, data):
         pass
 
+    @intent_file_handler("handle_temperature.intent", "HandleTemperatureIntent")
+    def handle_temperature(self, data):
+        pass
+
+    @intent_file_handler("handle_is_it_hot.intent", "HandleIsItHotIntent")
+    def handle_temperature(self, data):
+        pass
+
+    @intent_file_handler("handle_is_it_cold.intent", "HandleIsItColdIntent")
+    def handle_temperature(self, data):
+        pass
+
 
 def create_skill(data):
     return WeatherSkill(data)
