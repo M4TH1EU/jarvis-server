@@ -1,10 +1,8 @@
-ce sera quoi la température ((ce|cet|) {day}|) ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
+il fait quel température
+ce sera quoi la température ((ce|cet|) {day}|)
 c'est quoi la température ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
-il fait quel température (dehors|) ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
-ca (ressemble à|donne) quoi la température (dehors|) ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
-donne moi la température ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
-donne moi la température (pour|de) (ce|cet|) {day} ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
+il fait quel température (dehors|)
+donne moi la température (pour|de) (ce|cet|) {day}
 dis moi la température ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
-dis moi la température (pour|de) (ce|cet|) {day} ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
 il (fait|va faire) (quel température|combien) (dehors|) (soir|midi|après-midi|matin|) ((ce|cet|) {day}|) ((à|a|pour) {location}|)
-il (fait|fera|va faire) (quelle|combien|) température (dehors|) ((ce|cet|) {day}|(pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|) ((à|a|pour) {location}|)
+donne moi la température à {location} {day}

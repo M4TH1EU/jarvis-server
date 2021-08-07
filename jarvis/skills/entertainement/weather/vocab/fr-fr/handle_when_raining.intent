@@ -1,0 +1,6 @@
+quand va t'il pleuvoir (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+quand est-ce qu'il pleut (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+c'est quand qu'il va pleuvoir (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+il pleut quand (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+la pluie arrive quand (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+quand est-ce qu'on va se prendre la pluie

@@ -1,0 +1,5 @@
+est-ce qu'il va y avoir des nuages (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+est-ce que ca va être nuageux (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+est-ce que le ciel sera nuageux (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+le ciel sera-il nuageux (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+est-ce qu'il fera nuageux (ce|cet|) ({day}|) ((à|a|pour) {location}|) ?

@@ -1,0 +1,3 @@
+est-ce qu'il va y avoir de l'orage (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+va t'il avoir de l'orage (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+est-ce qu'il y aura de l'orage (ce|cet|) ({day}|) ((à|a|pour) {location}|)

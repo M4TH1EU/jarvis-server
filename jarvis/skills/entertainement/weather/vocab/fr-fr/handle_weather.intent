@@ -7,7 +7,7 @@ donne moi la météo (pour|de) (ce|cet|) {day} ((pour|les|de ces|ces) {forecast_
 dis moi la météo ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
 dis moi la météo (pour|de) (ce|cet|) {day} ((pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|)
 il (fait|va faire) quel temps (dehors|) (soir|midi|après-midi|matin|) ((ce|cet|) {day}|) ((à|a|pour) {location}|)
-il (fait|fera|va faire) (quel|quoi|) (temps|météo|) (dehors|) ((ce|cet|) {day}|(pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|) ((à|a|pour) {location}|)
+il (fait|fera|va faire) (quel|quoi|) (temps|météo|comme temps) (dehors|) ((ce|cet|) {day}|(pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|) ((à|a|pour) {location}|)
 donne moi les prévisions de la journée ((à|pour) {location}|)
 (donne moi|ce sera quoi) les prévisions (météo|) pour (ce|cet|) {day} ((à|a|pour) {location}|)
 (donne moi|ce sera quoi) les prévisions (météo|) ({day}|(pour|les|de ces|ces) {forecast_days} (prochain|prochains|) jours|) ((à|a|pour) {location}|)

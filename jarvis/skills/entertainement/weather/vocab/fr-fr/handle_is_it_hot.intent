@@ -1,2 +1,3 @@
-est-ce qu'il va faire chaud {day}
-va t'il faire chaud {day}
+est-ce qu'il va faire chaud (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+va t'il faire chaud (ce|cet|) ({day}|) ((à|a|pour) {location}|)
+il va faire chaud (ce|cet|) ({day}|) ((à|a|pour) {location}|)
