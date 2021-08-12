@@ -6,6 +6,8 @@ class WeatherSkill(Skill, metaclass=SkillRegistering):
     def __init__(self, data=dict):
         super().__init__("WeatherSkill", data)
 
+    # TODO: implement the entire skill with various provides (meteoswiss/meteofrance/openweather/etc)
+
     @intent_file_handler("handle_weather.intent", "HandleWeatherIntent")
     def handle_weather(self, data):
         pass
