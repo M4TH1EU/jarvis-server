@@ -10,7 +10,8 @@ from jarvis.skills.productivity.speedtest import SpeedTestSkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils, flask_utils
 
-if __name__ == '__main__':
+
+def start():
     # Load lingua franca in the memory
     # Supported : English French German Hungarian Italian Portuguese Swedish
     lingua_franca.load_language(lang=languages_utils.get_language_only_country())

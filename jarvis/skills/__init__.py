@@ -4,9 +4,9 @@ import random
 import threading
 import types
 
-from jarvis import get_path_file
-from jarvis.skills import intent_manager
-from jarvis.utils import languages_utils, client_utils
+from .. import get_path_file
+from ..skills import intent_manager
+from ..utils import languages_utils, client_utils
 
 
 class Skill:

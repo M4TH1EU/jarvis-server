@@ -15,8 +15,10 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
                                                  data['artist'] if 'artist' in data else None)
 
         if song_lists_matching is not None and len(song_lists_matching) >= 1:
-            # pause the music then speak dialog
-            spotify.get_spotify().pause_playback()
+
+            # pause the music before speaking dialog
+            if spotify.is_music_playing():
+                spotify.get_spotify().pause_playback()
 
             if 'artist' in data and 'song' not in data:
                 self.speak_dialog("play_from_artist", {'artist': song_lists_matching[0]['artists'][0]['name']})

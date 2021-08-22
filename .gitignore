@@ -11,7 +11,7 @@ __pycache__/
 *.so
 
 intent_cache/*
-**/intent_cache/**
+intent_cache/**
 
 
 # Distribution / packaging
