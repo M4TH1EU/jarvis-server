@@ -37,7 +37,9 @@ def process_audio_request():
             intent_manager.recognise(result_stt, request.headers.get('Client-Ip'), request.headers.get('Client-Port')))
 
     except sr.UnknownValueError:
-        print("[Error] No speech detected in the send audio!")
+        error_msg = "[Error] No speech detected in the send audio!"
+        print(error_msg)
+        return jsonify(error_msg)
 
 
 def get_data_in_request(flask_request):
