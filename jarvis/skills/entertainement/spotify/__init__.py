@@ -11,22 +11,22 @@ class SpotifySkill(Skill, metaclass=SkillRegistering):
     def handle_play_a_song(self, data):
         print(data)
 
-        song_lists_matching = spotify.query_song(data['song'] if 'song' in data else None,
+        matching_song = spotify.query_song(data['song'] if 'song' in data else None,
                                                  data['artist'] if 'artist' in data else None)
 
-        if song_lists_matching is not None and len(song_lists_matching) >= 1:
+        if matching_song is not None and len(matching_song) >= 1:
 
             # pause the music before speaking dialog
             if spotify.is_music_playing():
                 spotify.get_spotify().pause_playback()
 
             if 'artist' in data and 'song' not in data:
-                self.speak_dialog("play_from_artist", {'artist': song_lists_matching[0]['artists'][0]['name']})
+                self.speak_dialog("play_from_artist", {'artist': matching_song['artists'][0]['name']})
             else:
-                self.speak_dialog("play_song_from_artist", {'song': song_lists_matching[0][
-                    'name'], 'artist': song_lists_matching[0]['artists'][0]['name']})
+                self.speak_dialog("play_song_from_artist", {'song': matching_song[
+                    'name'], 'artist': matching_song['artists'][0]['name']})
 
-            spotify.get_spotify().add_to_queue(uri=song_lists_matching[0]['uri'])
+            spotify.get_spotify().add_to_queue(uri=matching_song['uri'])
             spotify.get_spotify().next_track()
         else:
             self.speak_dialog("nothing_found")

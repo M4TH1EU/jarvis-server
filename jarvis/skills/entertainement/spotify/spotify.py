@@ -42,19 +42,14 @@ def query_song(song=None, artist=None):
             tracks = [(best_confidence(d['name'], 'None'), d) for d in data]
 
         tracks.sort(key=lambda x: x[0])
-
         tracks.reverse()  # Place best matches first
 
         # Find pretty similar tracks to the best match
-        tracks = [t for t in tracks if t[0] > tracks[0][0] - 0.1]
-
+        # tracks = [t for t in tracks if t[0] > tracks[0][0] - 0.1]
         # Sort remaining tracks by popularity
-        tracks.sort(key=lambda x: x[1]['popularity'])
-        # print([(t[0], t[1]['name'], t[1]['artists'][0]['name']) for t in tracks])  # DEBUG
-        data = [tracks[-1][1]]
+        # tracks.sort(key=lambda x: x[1]['popularity'])
 
-        # return tracks[-1][0], {'data': data, 'name': None, 'type': 'track'}
-        return data
+        return random.choice(tracks)[1]
 
 
 def is_music_playing():
