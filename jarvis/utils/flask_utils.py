@@ -30,10 +30,14 @@ def process_audio_request():
     r = sr.Recognizer()
     audio = sr.AudioData(frame_data, sample_rate, sample_width)
 
-    result_stt = r.recognize_google(audio, language=languages_utils.get_language_only_country())
+    try:
+        result_stt = r.recognize_google(audio, language=languages_utils.get_language_only_country())
 
-    return jsonify(
-        intent_manager.recognise(result_stt, request.headers.get('Client-Ip'), request.headers.get('Client-Port')))
+        return jsonify(
+            intent_manager.recognise(result_stt, request.headers.get('Client-Ip'), request.headers.get('Client-Port')))
+
+    except sr.UnknownValueError:
+        print("[Error] No speech detected in the send audio!")
 
 
 def get_data_in_request(flask_request):
