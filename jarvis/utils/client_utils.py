@@ -9,6 +9,8 @@ def speak(sentence, client_ip, client_port):
     if raw_audio_bytes is None:
         return "Error, audio not valid!"
 
+    # TODO: remove when fixed opentts server
+    print(sentence)
     play_audio_on_client(raw_audio_bytes, client_ip, client_port)
 
 

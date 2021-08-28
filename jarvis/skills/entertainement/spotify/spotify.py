@@ -62,7 +62,8 @@ def is_music_playing():
 
 
 def best_confidence(title, query):
-    """Find best match for a title against a query.
+    """
+    Find best match for a title against a query.
     Some titles include ( Remastered 2016 ) and similar info. This method
     will test the raw title and a version that has been parsed to remove
     such information.
@@ -71,6 +72,8 @@ def best_confidence(title, query):
         query: query from user
     Returns:
         (float) best condidence
+
+    Thanks to @Mycroft source code for this code
     """
     if query == 'None':
         return SequenceMatcher(None, random_string_generator(5), random_string_generator(5)).ratio()
