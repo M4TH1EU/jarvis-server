@@ -43,7 +43,7 @@ go to the Python Console and enter the following commands :
 
 # Errors
 Common errors than I personally encoured during this project, hope this can help you.
-# FANN/FANN2 error during pip requirements
+## FANN/FANN2 error during pip requirements
 I actually don't know how I solved this but I tried building myself FANN following the instruction from [here](https://github.com/libfann/fann#from-source).
 Here is some links I found trying to solve the error :
 https://stackoverflow.com/questions/51367972/lib-fann2-failed-to-install
