@@ -40,10 +40,11 @@ go to the Python Console and enter the following commands :
 > nltk.download('stopwords')
 ```
 
-
 # Errors
 Common errors than I personally encoured during this project, hope this can help you.
 ### FANN/FANN2 error during pip requirements
+#### Linux : 
+
 I actually don't know how I solved this but I tried building myself FANN following the instruction from [here](https://github.com/libfann/fann#from-source).
 Here is some links I found trying to solve the error :
 https://stackoverflow.com/questions/51367972/lib-fann2-failed-to-install
@@ -51,3 +52,10 @@ https://github.com/FutureLinkCorporation/fann2/issues/11
 https://github.com/MycroftAI/padatious#installing
 https://github.com/MycroftAI/padatious/issues/21
 https://jansipke.nl/installing-fann-with-python-bindings-on-ubuntu/
+
+#### Windows
+Solution for windows users :
+```
+pip install pipwin
+pipwin install fann2
+```
