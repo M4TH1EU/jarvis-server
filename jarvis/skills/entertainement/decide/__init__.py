@@ -1,21 +1,16 @@
 import random
 
-from adapt.intent import IntentBuilder
-
 from jarvis.skills import Skill, SkillRegistering
-from jarvis.skills.decorators import intent_handler
+from jarvis.skills.decorators import intent_file_handler
 
 
 class DecideSkill(Skill, metaclass=SkillRegistering):
     def __init__(self, data=dict):
         super().__init__("DecideSkill", data)
 
-    @intent_handler(IntentBuilder("DecideIntent").require("choice1").require("choice2").optionally("OrKeyword"))
-    # @intent_file_handler("decide.intent", "DecideIntent")
-    def handle_decide(self, data):
+    @intent_file_handler("decide.intent", "DecideIntent")
+    def handle_decide_intent(self, data):
         print("decide")
-
-        print(data)
 
         if 'choice1' in data and 'choice2' in data:
             choice = bool(random.getrandbits(1))

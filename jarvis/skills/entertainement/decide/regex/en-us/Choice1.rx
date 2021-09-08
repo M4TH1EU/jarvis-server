@@ -1,2 +1,0 @@
-(.* (?P<choice1>.*) or (?P<dummy>.*))
-between ((?P<choice1>.*) and (?P<dummy>.*))
