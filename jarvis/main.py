@@ -6,6 +6,7 @@ from jarvis.skills.entertainement.decide import DecideSkill
 from jarvis.skills.entertainement.jokes import JokesSkill
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.entertainement.weather import WeatherSkill
+from jarvis.skills.productivity.homeassistant import HomeAssistantSkill
 from jarvis.skills.productivity.speedtest import SpeedTestSkill
 from jarvis.skills.research.wikipedia import WikipediaSkill
 from jarvis.utils import languages_utils, flask_utils
@@ -24,6 +25,7 @@ def start():
     DecideSkill().register()
     TimerSkill().register()
     WeatherSkill().register()
+    HomeAssistantSkill().register()
 
     # Load all skills
     intent_manager.load_all_skills()
