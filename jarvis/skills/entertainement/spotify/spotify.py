@@ -12,14 +12,19 @@ from jarvis.utils import config_utils
 scope = "user-read-playback-state, user-modify-playback-state, user-read-currently-playing"
 
 # TODO: Investigate the open_browser and automatic auth renewing without user interaction
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
-                                               client_id=config_utils.get_in_config("SPOTIFY_CLIENT_ID"),
-                                               client_secret=config_utils.get_in_config("SPOTIFY_CLIENT_SECRET"),
-                                               redirect_uri='http://localhost:8888/callback/',
-                                               open_browser=False))
+
+sp = None
 
 
 def get_spotify():
+    global sp
+    if sp is None:
+        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
+                                                       client_id=config_utils.get_in_secret("SPOTIFY_CLIENT_ID"),
+                                                       client_secret=config_utils.get_in_secret(
+                                                           "SPOTIFY_CLIENT_SECRET"),
+                                                       redirect_uri='http://localhost:8888/callback/',
+                                                       open_browser=False))
     return sp
 
 
@@ -53,7 +58,7 @@ def query_song(song=None, artist=None):
 
 
 def is_music_playing():
-    return sp.current_user_playing_track()['is_playing']
+    return get_spotify().current_user_playing_track()['is_playing']
 
 
 def best_confidence(title, query):

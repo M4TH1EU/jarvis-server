@@ -1,18 +1,19 @@
 from jarvis.skills import Skill, SkillRegistering
 from jarvis.skills.decorators import intent_file_handler
 from jarvis.skills.entertainement.spotify import spotify
+from jarvis.utils import config_utils
 
 
 class SpotifySkill(Skill, metaclass=SkillRegistering):
     def __init__(self, data=dict):
-        super().__init__("SpotifySkill", data)
+        super().__init__("SpotifySkill", data, required_config=['SPOTIFY_CLIENT_ID', 'SPOTIFY_CLIENT_SECRET'])
 
     @intent_file_handler("play_a_song.intent", "PlaySongWithSpotifyIntent")
     def handle_play_a_song(self, data):
         print(data)
 
         matching_song = spotify.query_song(data['song'] if 'song' in data else None,
-                                                 data['artist'] if 'artist' in data else None)
+                                           data['artist'] if 'artist' in data else None)
 
         if matching_song is not None and len(matching_song) >= 1:
 
