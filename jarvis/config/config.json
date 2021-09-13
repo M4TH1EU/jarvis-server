@@ -2,7 +2,6 @@
   "PORT": 5000,
   "12HOURS-FORMAT": false,
   "LANGUAGE": "fr-fr",
-  "SPOTIFY_CLIENT_ID": "!secret SPOTIFY_CLIENT_ID",
-  "SPOTIFY_CLIENT_SECRET": "!secret SPOTIFY_CLIENT_SECRET",
-  "TTS_VOICE": "marytts:upmc-pierre-hsmm"
+  "TTS_VOICE": "marytts:upmc-pierre-hsmm",
+  "PAUSE_MUSIC_AFTER_HOTWORD": true
 }

@@ -11,13 +11,14 @@ def get_in_config(name):
     if name in config_json:
         if isinstance(config_json.get(name), str):
             if "!secret" in config_json.get(name):
-                # secret_name = config_json.get(name).removeprefix('!secret ')
                 secret_name = config_json.get(name).replace('!secret ', '')
                 return get_in_secret(secret_name)
             else:
                 return config_json.get(name)
         else:
             return config_json.get(name)
+    else:
+        return get_in_secret(name)
 
 
 def get_in_secret(secret_name):
@@ -26,4 +27,4 @@ def get_in_secret(secret_name):
     if secret_name in secrets_json:
         return secrets_json.get(secret_name)
     else:
-        return "Not found!"
+        return None
