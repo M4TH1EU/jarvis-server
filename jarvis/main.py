@@ -27,6 +27,12 @@ def start():
     WeatherSkill().register()
     HomeAssistantSkill().register()
 
+    # TODO: movies master skill
+    # TODO: calculator skill
+    # TODO: wolfram alpha skill
+    # TODO: google/ddg help skill
+    # TODO: unit converter skill
+
     # Load all skills
     intent_manager.load_all_skills()
 
