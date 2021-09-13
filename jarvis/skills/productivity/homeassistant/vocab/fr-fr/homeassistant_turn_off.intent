@@ -1,3 +1,4 @@
-(éteint|arrête|arrêter) (voir|) {entity} ((dans|à|au) {location}|)
+(éteint|éteins|arrête|arrêter) (voir|) {entity} ((dans|à|au) {location}|)
 tu peux (éteindre|arrête) (le|la) {entity} ((dans|à|au) {location}|)
 tu peux (éteindre|arrête) l'{entity} ((dans|à|au) {location}|)
+(arrête|éteins|éteint) (la|le|les) {entity}

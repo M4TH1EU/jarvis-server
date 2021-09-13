@@ -32,6 +32,9 @@ def find_switchable_entity(entity):
         ]
     )
 
+    if ha_entity is None:
+        print("Can't find entity for name : " + entity)
+
     return ha_entity
 
 
@@ -140,6 +143,22 @@ def get_entity_with_overridden_name(friendly_name):
         return sorted(scores.items(), reverse=True)[0][1]
 
     return None
+
+
+def turn_on_entity(entity_id):
+    get_client().trigger_service("homeassistant", "turn_on", **{'entity_id': entity_id})
+
+
+def turn_off_entity(entity_id):
+    get_client().trigger_service("homeassistant", "turn_off", **{'entity_id': entity_id})
+
+
+def restart_ha():
+    get_client().trigger_service("homeassistant", "restart")
+
+
+def shutdown_ha():
+    get_client().trigger_service("homeassistant", "stop")
 
 
 def init():
