@@ -6,11 +6,14 @@ import types
 
 from .. import get_path_file
 from ..skills import intent_manager
-from ..utils import languages_utils, client_utils
+from ..utils import languages_utils, client_utils, config_utils
 
 
 class Skill:
-    def __init__(self, name, data):
+    def __init__(self, name, data, required_config: list = None):
+        if required_config is not None:
+            self.required_config = required_config
+
         self.name = name
 
         self.client_ip = data['client_ip']
@@ -21,6 +24,12 @@ class Skill:
         self.skill_folder = path[3]
 
         self.path = os.path.dirname(get_path_file.__file__) + "/skills/" + self.category + "/" + self.skill_folder
+
+        if self.has_required_config():
+            self.on_load()
+
+    def on_load(self):
+        pass
 
     def speak(self, sentence):
         client_utils.speak(sentence, self.client_ip, self.client_port)
@@ -51,10 +60,13 @@ class Skill:
         thread.start()
 
     def register(self):
-        self.register_entities_adapt()
-        self.register_entities_padatious()
-        self.register_regex()
-        print("[" + self.name + "] Registered entity/entities and regex(s)")
+        if self.has_required_config():
+            self.register_entities_adapt()
+            self.register_entities_padatious()
+            self.register_regex()
+            print("[" + self.name + "] Registered entity/entities and regex(s)")
+        else:
+            print("[WARN] Skipped skill " + self.name + " : please check your config.")
 
     def register_entities_adapt(self):
         path = self.path + "/vocab/" + languages_utils.get_language() + "/*.voc"
@@ -79,6 +91,13 @@ class Skill:
         result = get_lines_of_all_files_in_path(path)
         for line in result:
             intent_manager.register_regex_adapt(line, self.name)
+
+    def has_required_config(self):
+        if hasattr(self, "required_config") and self.required_config is not None:
+            for field in self.required_config:
+                if config_utils.get_in_config(field) is None:
+                    return False
+        return True
 
 
 def get_random_line_from_file(filepath):
