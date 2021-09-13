@@ -1,0 +1,9 @@
+{
+  "friendly_names": [
+    "tv",
+    "télévision",
+    "télé",
+    "téléviseur"
+  ],
+  "entity": "switch.tv_philips"
+}

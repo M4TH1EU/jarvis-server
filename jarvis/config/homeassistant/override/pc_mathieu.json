@@ -1,0 +1,11 @@
+{
+  "friendly_names": [
+    "pc",
+    "tour",
+    "pc mathieu",
+    "tour mathieu",
+    "ordinateur",
+    "ordinateur mathieu"
+  ],
+  "entity": "switch.wake_on_lan_pc_tour"
+}
