@@ -1,4 +1,4 @@
-(allume|démarre) (voir|) (la|le|) {entity} ((dans|) {location}|)
-(allume|démarre) (voir|) l'{entity} ((dans|) {location}|)
-tu peux (allumer|démarrer) (le|la|) {entity} ((dans|) {location}|)
-tu peux (allumer|démarrer) l'{entity} ((dans|) {location}|)
+(allume|démarre) (voir|) (la|le|) {entity} ((dans) {location}|)
+(allume|démarre) (voir|) l'{entity} ((dans|à|au) {location}|)
+tu peux (allumer|démarrer) (le|la|) {entity} ((dans|à|au) {location}|)
+tu peux (allumer|démarrer) l'{entity} ((dans|à|au) {location}|)

@@ -58,7 +58,7 @@ def find_entity(name, types):
     # Check if the friendly name is overriden manually (from the config files)
     if is_overridden(name):
         try:
-            actionable_entity = get_client().get_entity(entity_id=get_entity_with_overriden_name(name))
+            actionable_entity = get_client().get_entity(entity_id=get_entity_with_overridden_name(name))
 
             result = {
                 "id": actionable_entity.entity_id,
@@ -67,7 +67,7 @@ def find_entity(name, types):
                 "best_score": 101}
             return result
         except ParameterMissingError:
-            print("[Error] : Entity with id : " + get_entity_with_overriden_name(name) + " doesn't exists.")
+            print("[Error] : Entity with id : " + get_entity_with_overridden_name(name) + " doesn't exists.")
             return None
 
     elif json_data:
@@ -117,7 +117,7 @@ def register_overrides():
         overridden_entities[entity] = friendly_names
 
     if len(overridden_entities) >= 1:
-        print("[HomeAssistant] Override for entities : " + str(list(overridden_entities.keys())))
+        print("[HomeAssistantSkill] Override for entities : " + str(list(overridden_entities.keys())))
 
 
 def is_overridden(entity_friendly_name):
@@ -128,10 +128,18 @@ def is_overridden(entity_friendly_name):
     return False
 
 
-def get_entity_with_overriden_name(friendly_name):
+def get_entity_with_overridden_name(friendly_name):
+    scores = dict()
     for key, value in overridden_entities.items():
-        if friendly_name in value:
-            return key
+        for val in value:
+            score = fuzz.token_sort_ratio(friendly_name, val)
+            if score > 50:
+                scores[score] = key
+
+    if len(scores) >= 1:
+        return sorted(scores.items(), reverse=True)[0][1]
+
+    return None
 
 
 def init():
@@ -139,4 +147,5 @@ def init():
     get_client()
 
     # register all the overrides entity from the config/homeassistant/override/ folder
-    register_overrides()
+    if not overridden_entities:
+        register_overrides()
