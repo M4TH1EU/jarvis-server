@@ -3,7 +3,8 @@ import json
 from adapt.engine import DomainIntentDeterminationEngine
 from padatious import IntentContainer
 
-from jarvis.utils import utils
+from jarvis.utils import utils, client_utils
+from jarvis.utils.fallbacks.wolframalpha import wa_client
 
 adapt_engine = DomainIntentDeterminationEngine()
 padatious_intents_container = IntentContainer('intent_cache')
@@ -104,7 +105,15 @@ def recognise(sentence, client_ip=None, client_port=None):
     confidence_padatious = get_confidence(best_intent_padatious)
 
     if confidence_adapt < 0.2 and confidence_padatious < 0.2:
-        return "I didn't understand..."
+
+        # Wolfram-Alpha Fallback
+        wolfram_response = wa_client.ask(data['utterance'])
+        if wolfram_response is not None:
+            client_utils.speak(wolfram_response, client_ip, client_port)
+            return wolfram_response
+        else:
+            # Nothing found at all
+            return "I didn't understand..."
     else:
         return handle_intent(data,
                              best_intent_adapt if confidence_adapt > confidence_padatious else best_intent_padatious)
