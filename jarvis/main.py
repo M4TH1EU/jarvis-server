@@ -4,6 +4,7 @@ from jarvis.skills import intent_manager
 from jarvis.skills.daily.timer import TimerSkill
 from jarvis.skills.entertainement.decide import DecideSkill
 from jarvis.skills.entertainement.jokes import JokesSkill
+from jarvis.skills.entertainement.moviemaster import MovieMaster
 from jarvis.skills.entertainement.spotify import SpotifySkill
 from jarvis.skills.entertainement.weather import WeatherSkill
 from jarvis.skills.productivity.homeassistant import HomeAssistantSkill
@@ -26,10 +27,10 @@ def start():
     TimerSkill().register()
     WeatherSkill().register()
     HomeAssistantSkill().register()
+    MovieMaster().register()
 
     # TODO: movies master skill
     # TODO: calculator skill
-    # TODO: wolfram alpha skill
     # TODO: google/ddg help skill
     # TODO: unit converter skill
 
