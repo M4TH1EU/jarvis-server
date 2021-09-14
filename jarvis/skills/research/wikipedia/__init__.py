@@ -10,7 +10,7 @@ class WikipediaSkill(Skill, metaclass=SkillRegistering):
     @intent_file_handler("search.wikipedia.intent", "WikipediaQueryIntent")
     def handle_wikipedia_query_intent(self, data):
         if 'query' in data:
-            # TODO : say somethink like "i'm searching..."
+            self.speak_dialog_threaded("wikipedia_searching")
             print("[INTENT RESULT] : " + wikipedia.page_summary(query=data['query']))
         else:
             # TODO: fallback to duckduckgo or wolfram alpha
