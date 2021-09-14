@@ -26,7 +26,7 @@ def get_audio_from_sentence(sentence):
 
     # TODO : add support for external opentts server
     try:
-        response = requests.get('http://localhost:5500/api/tts', headers=headers, params=params)
+        response = requests.get('http://localhost:5500/api/tts', headers=headers, params=params, timeout=0.2)
         return response.content
     except requests.exceptions.ConnectionError:
         print("Error connecting to Open TTS server")
