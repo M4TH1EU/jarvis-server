@@ -42,16 +42,17 @@ class Skill:
         random_line = get_random_line_from_file(file)
 
         for key, val in data.items():
-            if "{{" + key + "}}" in random_line:
+            if "{{" + key + "}}" in random_line or "{" + key + "}" in random_line:
                 # TODO: replace when found a better TTS engine for french
                 # as the french tts don't support float in sentence, convert it to an integer
                 if is_float(val):
                     # val = str(int(float(val)))  # convert a float to integer
                     val = str(val).split(".")[0] + " virgule " + str(val).split(".")[1]
 
-                    random_line = random_line.replace("{{" + key + "}}", val)
+                random_line = random_line.replace("{{" + key + "}}", val)
+                random_line = random_line.replace("{" + key + "}", val)
 
-            self.speak(random_line)
+        self.speak(random_line)
 
         return "Error, dialog not found for : " + dialog
 
