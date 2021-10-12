@@ -1,0 +1,29 @@
+# ALPINE VERSION OF THE DOCKER FILE, NOT WORKING ATM.
+# TRYING TO SEE IF THERE IS A DIFFERENCE USING AN UBUNTU IMAGE OR AN ALPINE
+
+FROM alpine:latest
+
+ENV ENV_STATUS=${NODE_ENV:-production}
+
+# For suport set local time zone.
+RUN apk update && apk upgrade
+
+RUN apk add --no-cache --upgrade grep
+
+WORKDIR /jarvis
+
+RUN apk add build-base python3 python3-dev py3-pip py3-distutils-extra py3-fann2 fann-dev swig git curl
+
+RUN git clone --branch $(curl --silent "https://api.github.com/repos/m4th1eu/jarvis-server/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")') --progress --verbose https://github.com/M4TH1EU/jarvis-server.git .
+
+RUN python3 -m pip install -r requirements.txt
+
+RUN apt cache clean
+
+EXPOSE 5000
+
+COPY start.sh /jarvis/
+
+RUN chmod +x start.sh
+
+CMD "./start.sh"
