@@ -139,3 +139,4 @@ dmypy.json
 
 /ffmpeg/
 /jarvis/config/secrets.json
+start.sh
