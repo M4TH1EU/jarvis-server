@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/uuWWP39.png" alt="jarvis banner" />
 
-# jarvis
+# jarvis-server
 
 Jarvis is a simple IA for home automation / personal assistant with voice commands written in Python. It can be used
 alongside with HomeAssistant, the more devices you have on HomeAssistant, the more you will be able to teach to Jarvis.
