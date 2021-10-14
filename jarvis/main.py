@@ -18,7 +18,7 @@ def start():
     # Supported : English French German Hungarian Italian Portuguese Swedish
     lingua_franca.load_language(lang=languages_utils.get_language_only_country())
 
-    # Tests
+    # Register all skills
     WikipediaSkill().register()
     JokesSkill().register()
     SpotifySkill().register()
@@ -29,7 +29,6 @@ def start():
     HomeAssistantSkill().register()
     MovieMaster().register()
 
-    # TODO: movies master skill
     # TODO: calculator skill
     # TODO: google/ddg help skill
     # TODO: unit converter skill
