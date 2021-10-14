@@ -21,11 +21,11 @@ def get_language_only_country():
 
 def get_language_full_name(name=None):
     """
-    Return for exemple french for fr-fr, english for en-en, etc (savec in languages.json in the config folder)
+    Return for exemple french for fr-fr, english for en-en, etc (saved in languages.json in the config folder)
 
     Return english if the language isn't found in the languages.json file
     """
-    config_json = json.load(open(path + "/config/languages.json", encoding='utf-8', mode='r'))
+    config_json = json.load(open(path + "/utils/config/languages.json", encoding='utf-8', mode='r'))
 
     if name is None:
         name = get_language()
@@ -37,7 +37,7 @@ def get_language_full_name(name=None):
 
 
 def get_spacy_model(language=None):
-    spacy_model = json.load(open(path + "/config/spacy.json", encoding='utf-8', mode='r'))
+    spacy_model = json.load(open(path + "/utils/config/spacy.json", encoding='utf-8', mode='r'))
 
     if language is None:
         language = get_language()
