@@ -47,6 +47,10 @@ Common errors than I personally encoured during this project, hope this can help
 
 #### Linux :
 
+First be sure to have all those packages installed : 
+```
+sudo apt-get install libfann-dev swig libfann-dev python3-fann2
+```
 I actually don't know how I solved this but I tried building myself FANN following the instruction
 from [here](https://github.com/libfann/fann#from-source). Here is some links I found trying to solve the error :
 https://stackoverflow.com/questions/51367972/lib-fann2-failed-to-install
