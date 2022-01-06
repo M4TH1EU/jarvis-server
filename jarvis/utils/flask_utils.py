@@ -1,4 +1,5 @@
 import json
+import tempfile
 
 import flask
 import speech_recognition as sr
@@ -21,6 +22,7 @@ def process_text_request():
                                             request.headers.get('Client-Port')))
 
 
+# RAW REQUEST
 @app.route("/process_audio_request", methods=['POST'])
 def process_audio_request():
     frame_data = request.data
@@ -30,8 +32,27 @@ def process_audio_request():
     r = sr.Recognizer()
     audio = sr.AudioData(frame_data, sample_rate, sample_width)
 
+    return recognition(r, audio)
+
+
+# .WAV (i.e.) FILE REQUEST
+@app.route("/process_audio_request_file", methods=['POST'])
+def process_audio_request_android():
+    temp = tempfile.NamedTemporaryFile(prefix='audio_', suffix='_android')
+    temp.write(request.data)
+
+    # use the audio file as the audio source
+    r = sr.Recognizer()
+    with sr.AudioFile(temp.name) as source:
+        audio = r.record(source)  # read the entire audio file
+
+    temp.close()
+
+    return recognition(r, audio)
+
+def recognition(recognizer, audio):
     try:
-        result_stt = r.recognize_google(audio, language=languages_utils.get_language_only_country())
+        result_stt = recognizer.recognize_google(audio, language=languages_utils.get_language_only_country())
 
         return jsonify(
             intent_manager.recognise(result_stt, request.headers.get('Client-Ip'), request.headers.get('Client-Port')))
